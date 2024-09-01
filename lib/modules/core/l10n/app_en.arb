@@ -1,0 +1,239 @@
+{
+    "helloWorld": "Log In",
+    "@helloWorld": {
+      "description": "The conventional newborn programmer greeting"
+    },
+    "hello": "Hello {userName}",
+    "@hello": {
+        "description": "A message with a single parameter",
+        "placeholders": {
+            "userName": {
+                "type": "String",
+                "example": "Bob"
+            }
+        }
+    },
+    "logIn": "Log In",
+    "@logIn": {
+        "description": "Message for Log in Action"  
+    },
+    "password": "Password",
+    "@password": {
+        "description": "Password"  
+    },
+    "confirm": "Confirm",
+    "@confirm": {
+        "description": "Confirm"  
+    },
+    "email": "Email",
+    "@email": {
+        "description": "Email"  
+    },
+    "recoverPassword": "Recover Password",
+    "@recoverPassword": {
+        "description": "Recover Password"  
+    },
+    "passwordRecover": "Recover Password",
+    "@passwordRecover": {
+        "description": "Message for Recover password Action"  
+    },
+    "joinWith": "Join with:",
+    "@joinWith": {
+        "description": "Message for Recover password Action"  
+    },
+    "createAccount": "Create new account",
+    "@createAccount": {
+        "description": "Message for Recover password Action"  
+    },
+    "dontHaveAccountRegist": "Don''t have an account?",
+    "@dontHaveAccountRegist": {
+        "description": "Message for Recover password Action"  
+    },
+    "alreadyHaveAnAccount": "Already have an account?",
+    "@alreadyHaveAnAccount": {
+        "description": "Message for Recover password Action"  
+    },
+    "signIn": "Sign In",
+    "@signIn": {
+        "description": "Message for Recover password Action"  
+    },
+    "pressNotSay": "Prefer not say",
+    "@pressNotSay": {
+        "description": "Prefer not say"  
+    },
+    "female": "Female",
+    "@female": {
+        "description": "Female"  
+    },
+    "man": "Man",
+    "@man": {
+        "description": "Man"  
+    },
+    "signUp": "Sign Up",
+    "@signUp": {
+        "description": "Message for Recover password Action"  
+    },
+    "signUpStepHeader": "Fill with your information",
+    "@signUpStepHeader": {
+        "description": "Message for Recover password Action"  
+    },
+    "name": "Name",
+    "@name": {
+        "description": "Message for Recover password Action"  
+    },
+    "last_details": "Last Details",
+    "@last_details": {
+        "description": "Last Details"  
+    },
+    "tellUsAboutYourself": "Tell us about your self",
+    "@tellUsAboutYourself": {
+        "description": "Message for Recover password Action"  
+    },
+    "select_your_interests": "Select your interests",
+    "@select_your_interests": {
+        "description": "Message for Recover password Action"  
+    },
+    "pleaseEnterSomeText": "Please enter some text",
+    "@pleaseEnterSomeText": {
+        "description": "Message for Recover password Action"  
+    },
+    "dateOfBirth": "Date of birth",
+    "@dateOfBirth": {
+        "description": "Message for Recover password Action"  
+    },
+    "continueText": "Continue",
+    "@continueText": {
+        "description": "Message for Recover password Action"  
+    },
+    "gender": "Gender",
+    "@gender": {
+        "description": "Message for Recover password Action"  
+    },
+    "add": "Add",
+    "@add": {
+        "description": "Message for Recover password Action"  
+    },
+    "done": "done",
+    "@done": {
+        "description": "Message for Recover password Action"  
+    },
+    "basket": "Basket",
+    "@basket": {
+        "description": "Message for Recover password Action"  
+    },
+    "login": "Login",
+    "@login": {
+        "description": "Message for Recover password Action"  
+    },
+    "soccer": "Soccer",
+    "@soccer": {
+        "description": "Message for Recover password Action"  
+    },
+    "complete": "Complete",
+    "@complete": {
+        "description": "Message for Recover password Action"  
+    },
+    "hostname": "Hostname",
+    "@hostname": {
+        "description": "Message for Recover password Action"  
+    },
+    "datePicker": "{date}",
+    "@datePicker": {
+        "description": "Message for Recover password Action",
+        "placeholders": {
+            "date": {
+              "type": "DateTime",
+              "format": "yMd"
+            }
+          }
+    },
+    "nWombats": "{count, plural, =0{no wombats} =1{1 wombat} other{{count} wombats}}",
+    "@nWombats": {
+        "description": "A plural message",
+        "placeholders": {
+            "count": {
+            "type": "num",
+            "format": "compact"
+            }
+        }
+    },
+    "interersted": "interersted",
+    "@interersted": {},
+    "nOfmParticipants": "{n} of {m} participants",
+    "@nOfmParticipants": {
+        "placeholders": {
+            "n": {
+            "type": "num",
+            "format": "compact"
+            },
+            "m": {
+            "type": "num",
+            "format": "compact"
+            }
+        }
+    },
+    "begginer": "begginer",
+    "@begginer": {},
+    "mid": "mid",
+    "@mid": {},
+    "good": "good",
+    "@good": {},
+    "pro": "pro",
+    "@pro": {},
+    "myActivities": "My Activities",
+    "@myActivities": {},
+    "nextActivities": "Next Activities",
+    "@nextActivities": {},
+    "viewActivity": "View Activity",
+    "@viewActivity": {},
+    "join": "Join",
+    "@join": {},
+    "online": "Online",
+    "@online": {},
+    "activities": "Activities",
+    "@activities": {},
+    "search": "Search",
+    "@search": {},
+    "getMonth": "{date}",
+    "@getMonth": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "MMMM"
+            }
+        }
+    },
+    "getDay": "{date}",
+    "@getDay": {
+        "placeholders": {
+            "date": {
+                "type": "DateTime",
+                "format": "d"
+            }
+        }
+    },
+    "nActivitiesFound": "{n} activities found",
+    "@nActivitiesFound": {
+        "placeholders": {
+            "n": {
+                "type": "int"
+            }
+        }
+    },
+    "news": "news",
+    "@news": {},
+    "notifications": "Notifications",
+    "@notifications": {},
+    "wantsToJoinYourActivity": "wants to join your activity",
+    "@wantsToJoinYourActivity": {},
+    "reject": "Reject",
+    "@reject": {},
+    "rejected": "Rejected",
+    "@rejected": {},
+    "accept": "Accept",
+    "@accept": {},
+    "accepted": "Accept",
+    "@accepted": {},
+    "viewProfile": "View Profile",
+    "@viewProfile": {}
+  }

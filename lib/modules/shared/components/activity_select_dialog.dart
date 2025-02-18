@@ -1,19 +1,20 @@
-import 'package:lfg_mobile/modules/shared/components/common_decoration.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lfg_mobile/modules/core/repositories/activity_types/activity_types.dart';
 import 'package:lfg_mobile/modules/core/repositories/activity_types/models/activity_types.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lfg_mobile/modules/shared/components/common_decoration.dart';
 import 'package:lfg_mobile/modules/shared/utils/activities.dart';
-import 'package:lfg_mobile/modules/signup/screens/sign_up_step_two_page.dart';
 
 class ActivitySelectDialog extends StatefulWidget {
   const ActivitySelectDialog({
     super.key,
     required this.handleListSelect,
+    required this.checkIfSelected,
   });
 
   final Function(String) handleListSelect;
+  final Function(String) checkIfSelected;
+
 
   @override
   State<ActivitySelectDialog> createState() => ActivitySelectDialogState();
@@ -21,9 +22,10 @@ class ActivitySelectDialog extends StatefulWidget {
 
 class ActivitySelectDialogState extends State<ActivitySelectDialog> {
   late Future<ActivityTypes> activityTypes;
-  static final List<String> activitites = ["basket", ""];
+  static final List<String> activitites = [];
   Function(String) get handleListSelect => widget.handleListSelect;
-
+  Function(String) get checkIfSelected => widget.checkIfSelected;
+  
   @override
   void initState() {
     super.initState();
@@ -47,7 +49,7 @@ class ActivitySelectDialogState extends State<ActivitySelectDialog> {
                         children: [
                           Text(
                             AppLocalizations.of(context)!.select_your_interests,
-                             style: TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 20,
                               color: Theme.of(context).colorScheme.primary
@@ -74,7 +76,12 @@ class ActivitySelectDialogState extends State<ActivitySelectDialog> {
                                 itemBuilder: (context, index) =>
                                     GestureDetector(
                                   onTap: () {
-                                    handleListSelect(snapshot.data!.activityTypes.elementAt(index).id);
+                                    handleListSelect(snapshot
+                                        .data!.activityTypes
+                                        .elementAt(index)
+                                        .id);
+
+                                    setState(() {});
                                   },
                                   child: Container(
                                       decoration: const BoxDecoration(
@@ -88,17 +95,21 @@ class ActivitySelectDialogState extends State<ActivitySelectDialog> {
                                           padding: const EdgeInsets.all(10),
                                           child: Row(children: [
                                             Expanded(
-                                                child: Text(getActivityTranslation(snapshot.data!.activityTypes.elementAt(index).id, context))
-                                              ),
+                                                child: Text(
+                                                    getActivityTranslation(
+                                                        snapshot
+                                                            .data!.activityTypes
+                                                            .elementAt(index)
+                                                            .id,
+                                                        context))),
                                             Container(
                                               height: 20,
                                               width: 20,
-                                              color: Colors.white,
-                                              child: context
-                                                      .watch<SignUpStepTwoPageFormCubit>()
-                                                      .state
-                                                      .activities
-                                                      .any((userActivity) => userActivity.activityTag == snapshot.data!.activityTypes.elementAt(index).id)
+                                              color: Theme.of(context).colorScheme.onPrimary,
+                                              child: checkIfSelected(snapshot.data!
+                                                              .activityTypes
+                                                              .elementAt(index)
+                                                              .id)
                                                   ? Icon(
                                                       Icons.check,
                                                       color: Theme.of(context)

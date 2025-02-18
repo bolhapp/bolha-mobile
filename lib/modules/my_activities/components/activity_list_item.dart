@@ -26,6 +26,8 @@ class ActivityListItem extends StatelessWidget {
               ),
               onPressed: () {
                 showModalBottomSheet<void>(
+                  enableDrag: true,
+                  scrollControlDisabledMaxHeightRatio: 100,
                   context: context,
                   builder: (BuildContext context) {
                     return ActivityBottomDrawer(

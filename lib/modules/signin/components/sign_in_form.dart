@@ -32,7 +32,7 @@ class SignInFormState extends State<SignInForm> {
       );
 
       await storeToken(data.accessToken);
-      context.go("/home");
+      context.go("/search");
     } catch (err) {
       debugPrint(err.toString());
       // handle error

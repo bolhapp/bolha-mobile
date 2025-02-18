@@ -1,175 +1,181 @@
-import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
-import 'package:lfg_mobile/modules/create_activity/components/form_image_picker.dart';
-import 'package:lfg_mobile/modules/create_activity/components/form_input.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lfg_mobile/modules/core/repositories/activity_types/models/activity_types.dart';
+import 'package:lfg_mobile/modules/create_activity/block/activity_state_block.dart';
+import 'package:lfg_mobile/modules/location_selector/screens/location_selector.dart';
+import 'package:lfg_mobile/modules/shared/components/activity_chip.dart';
+import 'package:lfg_mobile/modules/shared/components/add_activity_categories.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-class CreateActivityStepTwoPage extends StatefulWidget {
+class CreateActivityStepTwoPage extends StatelessWidget {
   const CreateActivityStepTwoPage({super.key});
 
   @override
-  State<CreateActivityStepTwoPage> createState() =>
-      CreateActivityStepTwoPageState();
-}
-
-class CreateActivityStepTwoPageState extends State<CreateActivityStepTwoPage> {
-  bool showAllFilter = false;
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Create Activity',
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.primary,
-              fontSize: Theme.of(context).textTheme.headlineLarge!.fontSize),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            Expanded(
-                flex: 1,
-                child: ListView(scrollDirection: Axis.vertical, children: [
-                  Row(
-                    children: [
-                      Expanded(
-                          flex: 1,
-                          child: Text("A actividade é online?",
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17))),
-                      Expanded(
-                          flex: 0,
-                          child: Switch(
-                            thumbIcon:
-                                const WidgetStatePropertyAll(Icon(Icons.close)),
-                            value: true,
-                            onChanged: (bool value) {},
-                          )),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  const FormInput(
-                    inputName: "Endereço",
-                    inputHint: "Endereço",
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Categorias",
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                      height: 150,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: const [
-                          SizedBox(
-                            width: 10,
-                          ),
-                          ImageInput(),
-                        ],
-                      )),
-                  Row(
-                    children: [
-                      Expanded(
-                          flex: 1,
-                          child: Text("Numero de pessoas?",
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17))),
-                      Expanded(
-                          flex: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            width: 109,
-                            height: 39,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.secondary,
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Icon(
-                                  Icons.remove,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                                Text("5",
-                                    style: TextStyle(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17)),
-                                Icon(
-                                  Icons.add,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                              ],
-                            ),
-                          )),
-                    ],
-                  ),
-                ])),
-            Expanded(
-                flex: 0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Cancelar",
-                        style: TextStyle(
+    final TextEditingController addressController = TextEditingController();
+
+    return SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: ListView(scrollDirection: Axis.vertical, children: [
+          Row(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Text(AppLocalizations.of(context)!.isOnline,
+                      style: TextStyle(
                           color: Theme.of(context).colorScheme.primary,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17))),
+              Expanded(
+                  flex: 0,
+                  child: Switch(
+                    thumbIcon: const WidgetStatePropertyAll(Icon(Icons.close)),
+                    value: context.watch<CreateActivityStateCubit>().state.isOnline,
+                    onChanged: context.read<CreateActivityStateCubit>().setIsOnline,
+                  )),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.address,
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              TextField(
+                controller: addressController,
+                onTap: () async  {
+                    final ILocationSelector? result = await context.push<ILocationSelector>('/location_selector');
+                    if(result != null) {
+                      addressController.value = TextEditingValue(text: result.description);
+                    }
+                },
+                textAlign: TextAlign.start,
+                textAlignVertical: TextAlignVertical.top,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Theme.of(context).colorScheme.secondary,
+                  hintText: AppLocalizations.of(context)!.exAddress,
+                  hintStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.w300,
+                  ),
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                  ),
+                ))
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            AppLocalizations.of(context)!.categories,
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.bold,
+                fontSize: 17),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Wrap(spacing: 10, runSpacing: 10, children: [
+            for (ActivityType item in (context
+                    .watch<CreateActivityStateCubit>()
+                    .state
+                    .categories))
+              ActivityChip(
+                activityId: item.id,
+                handleDelete: (data) => context
+                    .read<CreateActivityStateCubit>()
+                    .deleteCategory(item.id),
+              ),
+            AddActivityCategories(
+              onCategorySelected: (categoryId) {
+                List<ActivityType> categories =
+                    context.read<CreateActivityStateCubit>().state.categories;
+                if (categories.any((el) => el.id == categoryId)) {
+                  context
+                      .read<CreateActivityStateCubit>()
+                      .deleteCategory(categoryId);
+                  return;
+                }
+                context
+                    .read<CreateActivityStateCubit>()
+                    .addCategory(categoryId);
+              }
+            )
+          ]),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Text(AppLocalizations.of(context)!.maxParticipants,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17))),
+              Expanded(
+                  flex: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    width: 109,
+                    height: 39,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondary,
+                      borderRadius: BorderRadius.circular(50),
                     ),
-                    ElevatedButton.icon(
-                      iconAlignment: IconAlignment.end,
-                      icon: Icon(
-                        Icons.arrow_right_alt_outlined,
-                        color: Theme.of(context).colorScheme.onPrimary,
-                      ),
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(
-                            Theme.of(context).colorScheme.primary),
-                      ),
-                      onPressed: () {
-                        context.push("/create_activity/step_three");
-                      },
-                      label: Text(
-                        'Seguir',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Theme.of(context).colorScheme.onPrimary,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () => context
+                              .read<CreateActivityStateCubit>()
+                              .decreaseMaxParticipantsCounter(),
+                          child: Icon(
+                            Icons.remove,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                )),
-          ],
-        ),
-      ),
-    );
+                        Builder(
+                          builder: (_) {
+                            // Whenever the state changes, only the Text is rebuilt.
+                            final state = context.watch<CreateActivityStateCubit>().state.maxParticipants;
+                            return Text(state.toString());
+                          },
+                        ),
+                        GestureDetector(
+                          onTap: () => context
+                              .read<CreateActivityStateCubit>()
+                              .increaseMaxParticipantsCounter(),
+                          child: Icon(
+                            Icons.add,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )),
+            ],
+          ),
+        ]));
   }
 }

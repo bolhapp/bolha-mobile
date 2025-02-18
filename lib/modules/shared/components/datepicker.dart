@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DatePicker extends StatefulWidget {
-  const DatePicker({super.key, this.restorationId, this.handleChanged});
+  const DatePicker(
+      {super.key,
+      this.restorationId,
+      this.handleChanged,
+      this.customInputDecoration
+    });
 
   final String? restorationId;
+  final InputDecoration? customInputDecoration;
   final void Function(String)? handleChanged;
 
   @override
@@ -16,9 +22,10 @@ class DatePicker extends StatefulWidget {
 class _DatePickerState extends State<DatePicker> with RestorationMixin {
   @override
   String? get restorationId => widget.restorationId;
-  
+
   void Function(String)? get handleChanged => widget.handleChanged;
-  
+  InputDecoration? get customInputDecoration => widget.customInputDecoration;
+
   final TextEditingController controller = TextEditingController();
   final RestorableDateTime _selectedDate =
       RestorableDateTime(DateTime(2021, 7, 25));
@@ -32,7 +39,7 @@ class _DatePickerState extends State<DatePicker> with RestorationMixin {
       );
     },
   );
-  
+
   @override
   void dispose() {
     _selectedDate.dispose();
@@ -69,9 +76,10 @@ class _DatePickerState extends State<DatePicker> with RestorationMixin {
 
   void _selectDate(DateTime? newSelectedDate) {
     if (newSelectedDate != null) {
-      final String newValue = AppLocalizations.of(context)!.datePicker(_selectedDate.value);
-      
-      if(handleChanged != null) {
+      final String newValue =
+          AppLocalizations.of(context)!.datePicker(_selectedDate.value);
+
+      if (handleChanged != null) {
         handleChanged!(newValue);
       }
 
@@ -84,15 +92,14 @@ class _DatePickerState extends State<DatePicker> with RestorationMixin {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector( 
+    return GestureDetector(
         onTap: () {
           _restorableDatePickerRouteFuture.present();
         },
         child: TextFormField(
-          decoration: TextInputCommonDecoration.textFieldStyle(),
-          controller: controller,
-          ignorePointers: true
-        )
-    );
+            decoration: customInputDecoration ??
+                TextInputCommonDecoration.textFieldStyle(),
+            controller: controller,
+            ignorePointers: true));
   }
 }

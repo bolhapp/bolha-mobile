@@ -76,8 +76,8 @@ class BottomNavigationMenuState extends State<BottomNavigationMenu> {
           Expanded(
               flex: 1,
               child: BottomButton(
-                path: "/home",
-                isActive: currentPath == "/home",
+                path: "/search",
+                isActive: currentPath == "/search",
                 handleClick: handleClick,
                 icon: Icons.search,
               ),

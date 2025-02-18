@@ -1,23 +1,25 @@
+import 'package:lfg_mobile/modules/core/repositories/activity_types/models/activity_types.dart';
 import 'package:lfg_mobile/modules/shared/components/activity_skill_selector.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lfg_mobile/modules/shared/components/activity_select_dialog.dart';
 import 'package:lfg_mobile/modules/shared/components/common_decoration.dart';
-import 'package:lfg_mobile/modules/signup/screens/sign_up_step_two_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lfg_mobile/modules/signup/block/sign_up_step_two_page_state.dart';
 
 class SignUpStepTwoPageForm extends StatelessWidget {
   const SignUpStepTwoPageForm({super.key});
 
   Future<dynamic> openActivityDialog(BuildContext context) async {
     final currentContextBloc = context.read<SignUpStepTwoPageFormCubit>();
-    debugPrint(currentContextBloc.toString());
+  
     return await showDialog(
       context: context,
       builder: (BuildContext _) {
         return  BlocProvider<SignUpStepTwoPageFormCubit>.value(
-        value: BlocProvider.of<SignUpStepTwoPageFormCubit>(context),
+        value: context.watch<SignUpStepTwoPageFormCubit>(),
         child:  ActivitySelectDialog(
+          checkIfSelected: (element) => context.read<SignUpStepTwoPageFormCubit>().state.activities.any((type) => type.activityTag == element),
           handleListSelect: (p0) {
             if (context.read<SignUpStepTwoPageFormCubit>().state.activities.any((d) => d.activityTag == p0)) {
               context.read<SignUpStepTwoPageFormCubit>().deleteActivity(p0);

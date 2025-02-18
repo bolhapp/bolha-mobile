@@ -1,11 +1,15 @@
 // GoRouter configuration
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lfg_mobile/modules/activity_search/screens/home_page.dart';
+import 'package:lfg_mobile/modules/activity_search/screens/activities_filters_page.dart';
+import 'package:lfg_mobile/modules/activity_search/screens/search.dart';
+import 'package:lfg_mobile/modules/create_activity/screens/activity_scaffold.dart';
 import 'package:lfg_mobile/modules/create_activity/screens/create_activity.dart';
 import 'package:lfg_mobile/modules/create_activity/screens/create_activity_step_four.dart';
 import 'package:lfg_mobile/modules/create_activity/screens/create_activity_step_three.dart';
 import 'package:lfg_mobile/modules/create_activity/screens/create_activity_step_two.dart';
+import 'package:lfg_mobile/modules/location_selector/screens/location_selector.dart';
 import 'package:lfg_mobile/modules/my_activities/screens/activities_page.dart';
 import 'package:lfg_mobile/modules/notifications/screens/page.dart';
 import 'package:lfg_mobile/modules/recover_account/screens/recover_account_page.dart';
@@ -14,7 +18,6 @@ import 'package:lfg_mobile/modules/signin/screens/page.dart';
 import 'package:lfg_mobile/modules/signup/screens/sign_up_page.dart';
 import 'package:lfg_mobile/modules/signup/screens/sign_up_step_page.dart';
 import 'package:lfg_mobile/modules/signup/screens/sign_up_step_two_page.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 final router = GoRouter(
   routes: [
@@ -38,9 +41,12 @@ final router = GoRouter(
       path: '/register/step_tow',
       builder: (context, state) => const SignUpStepTwoPage(),
     ),
+    GoRoute(
+      path: '/location_selector',
+      builder: (context, state) => const LocationSelector(),
+    ),
     ShellRoute(
         builder: (BuildContext context, GoRouterState state, Widget child) {
-   
           return Scaffold(
             appBar: AppBar(
               title: Text(
@@ -65,8 +71,12 @@ final router = GoRouter(
         },
         routes: [
           GoRoute(
-            path: '/home',
-            builder: (context, state) => const HomePage(),
+            path: '/search',
+            builder: (context, state) => const SearchPage(),
+          ),
+          GoRoute(
+            path: '/search/filters',
+            builder: (context, state) => const SearchFilters(),
           ),
           GoRoute(
             path: '/notifications',
@@ -77,21 +87,27 @@ final router = GoRouter(
             builder: (context, state) => const ActivitiesPage(),
           ),
         ]),
-    GoRoute(
-      path: '/create_activity',
-      builder: (context, state) => const CreateActivityPage(),
-    ),
-    GoRoute(
-      path: '/create_activity/step_two',
-      builder: (context, state) => const CreateActivityStepTwoPage(),
-    ),
-    GoRoute(
-      path: '/create_activity/step_three',
-      builder: (context, state) => const CreateActivityStepThreePage(),
-    ),
-    GoRoute(
-      path: '/create_activity/step_four',
-      builder: (context, state) => const CreateActivityStepFourPage(),
-    ),
+    ShellRoute(
+        builder: (BuildContext context, GoRouterState state, Widget child) {
+          return ActivityScaffold(currentPath: state.fullPath!,child: child,);
+        },
+        routes: [
+          GoRoute(
+            path: '/create_activity',
+            builder: (context, state) => const CreateActivityPage(),
+          ),
+          GoRoute(
+            path: '/create_activity/step_two',
+            builder: (context, state) => const CreateActivityStepTwoPage(),
+          ),
+          GoRoute(
+            path: '/create_activity/step_three',
+            builder: (context, state) => const CreateActivityStepThreePage(),
+          ),
+          GoRoute(
+            path: '/create_activity/step_four',
+            builder: (context, state) => const CreateActivityStepFourPage(),
+          ),
+        ]),
   ],
 );

@@ -1,146 +1,118 @@
-import 'package:go_router/go_router.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lfg_mobile/modules/create_activity/block/activity_state_block.dart';
 import 'package:lfg_mobile/modules/create_activity/components/form_input.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lfg_mobile/modules/shared/components/datepicker.dart';
 
-class CreateActivityStepThreePage extends StatefulWidget {
+class CreateActivityStepThreePage extends StatelessWidget {
   const CreateActivityStepThreePage({super.key});
 
   @override
-  State<CreateActivityStepThreePage> createState() =>
-      CreateActivityStepThreePageState();
-}
-
-class CreateActivityStepThreePageState
-    extends State<CreateActivityStepThreePage> {
-  bool showAllFilter = false;
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Create Activity',
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.primary,
-              fontSize: Theme.of(context).textTheme.headlineLarge!.fontSize),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            Expanded(
-                flex: 1,
-                child: ListView(scrollDirection: Axis.vertical, children: [
-                  Row(
-                    children: [
-                      Expanded(
-                          flex: 1,
-                          child: Text("Nivel dos participantes?",
-                              style: TextStyle(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17))),
-                      Expanded(
-                          flex: 0,
-                          child: DropdownMenu(
-                              onSelected: (data) {},
-                              width: 150,
-                              inputDecorationTheme: InputDecorationTheme(
-                                filled: true,
-                                fillColor:
-                                    Theme.of(context).colorScheme.secondary,
-                                hintStyle: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontWeight: FontWeight.w300),
-                                border: const OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                ),
-                              ),
-                              dropdownMenuEntries: [
-                                DropdownMenuEntry(
-                                    value: "man",
-                                    label: AppLocalizations.of(context)!.man),
-                                DropdownMenuEntry(
-                                    value: "female",
-                                    label:
-                                        AppLocalizations.of(context)!.female),
-                                DropdownMenuEntry(
-                                    value: "none",
-                                    label: AppLocalizations.of(context)!
-                                        .pressNotSay),
-                              ])),
-                    ],
-                  ),
-                    const SizedBox(
-                    height: 20,
-                  ),
-                  const FormInput(
-                    inputName: "Data da Actividade",
-                    inputHint: "Ex: Blubie de Leitura",
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const FormInput(
-                    inputName: "Requisitos ou restrições",
-                    inputHint: "ex: tem de ter duas maos",
-                  ),
-                   const SizedBox(
-                    height: 20,
-                  ),
-                  const FormInput(
-                    inputName: "Informaçoes adicionar",
-                    inputHint: "ex: comvem trazer outro par de tenis",
-                  ),
-                ])),
-            Expanded(
-                flex: 0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Cancelar",
-                        style: TextStyle(
+    return SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: ListView(scrollDirection: Axis.vertical, children: [
+          Row(
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Text(AppLocalizations.of(context)!.participantsLevel,
+                      style: TextStyle(
                           color: Theme.of(context).colorScheme.primary,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    ElevatedButton.icon(
-                      iconAlignment: IconAlignment.end,
-                      icon: Icon(
-                        Icons.arrow_right_alt_rounded,
-                        color: Theme.of(context).colorScheme.onPrimary,
-                      ),
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(
-                            Theme.of(context).colorScheme.primary),
-                      ),
-                   onPressed: () {
-                        context.push("/create_activity/step_four");
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17))),
+              Expanded(
+                  flex: 0,
+                  child: DropdownMenu(
+                      onSelected: (data) {
+                        context
+                            .read<CreateActivityStateCubit>()
+                            .setUsersLvl(data);
                       },
-                      label: Text(
-                        'Finalizar',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Theme.of(context).colorScheme.onPrimary,
+                      width: 150,
+                      inputDecorationTheme: InputDecorationTheme(
+                        filled: true,
+                        fillColor: Theme.of(context).colorScheme.secondary,
+                        hintStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.w300),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
                         ),
                       ),
-                    )
-                  ],
-                )),
-          ],
-        ),
-      ),
-    );
+                      dropdownMenuEntries: [
+                        DropdownMenuEntry(
+                            value: "man",
+                            label: AppLocalizations.of(context)!.man),
+                        DropdownMenuEntry(
+                            value: "female",
+                            label: AppLocalizations.of(context)!.female),
+                        DropdownMenuEntry(
+                            value: "none",
+                            label: AppLocalizations.of(context)!.pressNotSay),
+                      ])),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.activityDate,
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              DatePicker(
+                customInputDecoration: InputDecoration(
+                  filled: true,
+                  fillColor: Theme.of(context).colorScheme.secondary,
+                  hintText: AppLocalizations.of(context)!.activityDate,
+                  hintStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.w300,
+                  ),
+                  border: const OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                  ),
+                ),
+                handleChanged: (data) {
+                  context.read<CreateActivityStateCubit>().setDate(data);
+                },
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          FormInput(
+            handleChanged: (data) =>
+                context.read<CreateActivityStateCubit>().setRequiremets(data),
+            isMultiLine: true,
+            inputName: AppLocalizations.of(context)!.requirementsOrRestrictions,
+            inputHint: AppLocalizations.of(context)!.exRequirementsOrRestrictions,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          FormInput(
+            handleChanged: (data) => context
+                .read<CreateActivityStateCubit>()
+                .setAdictionalInformation(data),
+            isMultiLine: true,
+            inputName: AppLocalizations.of(context)!.additionalInformation,
+            inputHint: AppLocalizations.of(context)!.exAdditionalInformation,
+          ),
+        ]));
   }
 }

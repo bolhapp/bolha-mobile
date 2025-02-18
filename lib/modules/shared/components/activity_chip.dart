@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:lfg_mobile/modules/shared/utils/activities.dart';
 
 class ActivityChip extends StatelessWidget {
-  const ActivityChip({super.key, required this.tag, required this.handleDelete});
+  const ActivityChip(
+      {super.key, required this.activityId, required this.handleDelete});
 
-  final String tag;
+  final String activityId;
   final Function(String) handleDelete;
 
   @override
   Widget build(BuildContext context) {
     return Chip(
-      backgroundColor: const Color(0xffd7e1e3),
-      deleteIconColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      deleteIconColor: Theme.of(context).colorScheme.onPrimary,
       deleteIcon: Icon(
         Icons.close,
         shadows: const [Shadow(blurRadius: 1)],
@@ -19,9 +21,15 @@ class ActivityChip extends StatelessWidget {
         size: 22,
       ),
       onDeleted: () {
-        handleDelete(tag);
+        handleDelete(activityId);
       },
-      label: Text(tag),
+      label: Text(
+        getActivityTranslation(activityId, context),
+        style: TextStyle(
+            color: Theme.of(context).colorScheme.onPrimary,
+            fontWeight: FontWeight.bold,
+            fontSize: 17),
+      ),
     );
   }
 }

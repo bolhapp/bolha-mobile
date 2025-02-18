@@ -1,123 +1,86 @@
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:lfg_mobile/modules/create_activity/block/activity_state_block.dart';
 import 'package:lfg_mobile/modules/create_activity/components/form_image_picker.dart';
 import 'package:lfg_mobile/modules/create_activity/components/form_input.dart';
+import 'package:lfg_mobile/modules/shared/components/image_picker_component.dart';
 
-class CreateActivityPage extends StatefulWidget {
+class CreateActivityPage extends StatelessWidget {
   const CreateActivityPage({super.key});
 
   @override
-  State<CreateActivityPage> createState() => CreateActivityPageState();
-}
-
-class CreateActivityPageState extends State<CreateActivityPage> {
-  bool showAllFilter = false;
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Create Activity',
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.primary,
-              fontSize: Theme.of(context).textTheme.headlineLarge!.fontSize),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            Expanded(
-                flex: 1,
-                child: ListView(scrollDirection: Axis.vertical, children: [
-                  const SizedBox(height: 20),
-                  const FormInput(
-                    inputName: "titulo da actividade",
-                    inputHint: "Ex: Blubie de Leitura",
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const FormInput(
-                    inputName: "Descricao",
-                    inputHint: "Descricao",
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Images",
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                   SizedBox(
-                    height: 150,
-                  child: ListView(
+
+    return Column(
+      children: [
+        Expanded(
+            flex: 1,
+            child: ListView(scrollDirection: Axis.vertical, children: [
+              const SizedBox(height: 20),
+              FormInput(
+                handleChanged: (data) {
+                  context.read<CreateActivityStateCubit>().setTitle(data);
+                },
+                isMultiLine: false,
+                inputName: AppLocalizations.of(context)!.activityTitle,
+                inputHint: AppLocalizations.of(context)!.exActivityTitle,
+                
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              FormInput(
+                handleChanged: (data) => context.read<CreateActivityStateCubit>().setDescription(data),
+                isMultiLine: true,
+                inputName: AppLocalizations.of(context)!.description,
+                inputHint: AppLocalizations.of(context)!.exDescription,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                AppLocalizations.of(context)!.images,
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                  height: 150,
+                  child: ListView.separated(
+                    itemBuilder: (_, idx) {
+                      if(idx >= context.read<CreateActivityStateCubit>().state.images.length) {
+                        return ImagemPickerComponent(
+                          getImagePlaceholder: (img) => ImageInput(
+                            image: img,
+                          ),
+                          handleImageSelected: (XFile data) => {
+                            context.read<CreateActivityStateCubit>().addImage(data)
+                          },
+                        );
+                      }
+                      return ImagemPickerComponent(
+                        image: context.watch<CreateActivityStateCubit>().state.images.elementAt(idx),
+                        getImagePlaceholder: (img) => ImageInput(
+                          image: img,
+                        ),
+                        handleImageSelected: (data) => context.read<CreateActivityStateCubit>().setImages(data),
+                      );
+                    },
+                    itemCount: context.watch<CreateActivityStateCubit>().state.images.length + 1,
                     scrollDirection: Axis.horizontal,
-                    children: const [
-                      SizedBox( width: 10, ),
-                      ImageInput(),
-                      SizedBox( width: 10, ),
-                      ImageInput(),
-                      SizedBox( width: 10, ),
-                      ImageInput(),
-                      SizedBox( width: 10, ),
-                      ImageInput(),
-                    ],
+                    separatorBuilder: (_, idx) => const SizedBox(
+                        width: 10,
+                      ),
                   )
-                  ),
-                ])),
-            Expanded(
-              flex: 0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    context.pop();
-                  },
-                  child: Text(
-                    "Cancelar",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
                 ),
-                ElevatedButton.icon(
-                  iconAlignment: IconAlignment.end,
-                  icon: Icon(
-                    Icons.arrow_right_alt_outlined,
-                    color: Theme.of(context).colorScheme.onPrimary,
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(
-                        Theme.of(context).colorScheme.primary),
-                  ),
-                  onPressed: () {
-                    context.push("/create_activity/step_two");
-                  },
-                  label: Text(
-                    'Seguir',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
-                  ),
-                )
-              ],
-            )),
-          ],
-        ),
-      ),
+            ])),
+      ],
     );
   }
 }

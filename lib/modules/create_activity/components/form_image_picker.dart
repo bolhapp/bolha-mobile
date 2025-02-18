@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class ImageInput extends StatelessWidget {
   const ImageInput({
     super.key,
+    this.image
   });
+
+  final ImageProvider? image;
 
 
   @override
@@ -17,11 +20,11 @@ class ImageInput extends StatelessWidget {
               color: Theme.of(context).colorScheme.secondary,
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Center(
+            child: image == null ? Center(
                 child: Icon(
               Icons.add,
               color: Theme.of(context).colorScheme.primary,
-            )))
+            )): Image(fit: BoxFit.fill, image: image as ImageProvider))
       ],
     );
   }

@@ -18,3 +18,8 @@ samples, guidance on mobile development, and a full API reference.
 ### NOT FORGET
 
 If tou add new translation we need to run the flutter gen-l10n
+
+
+# Connecting to Localhost
+
+If trying to connect to a localhost and you using android studio we need to update on client file and if no custom action was taken the address should be `http://10.0.2.2:3000/` instead of `http://localhost:3000/`

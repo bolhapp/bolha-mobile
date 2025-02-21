@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lfg_mobile/modules/activity_search/screens/activities_filters_page.dart';
-import 'package:lfg_mobile/modules/activity_search/screens/search.dart';
+import 'package:lfg_mobile/modules/activity_search/screens/search_page.dart';
+import 'package:lfg_mobile/modules/activity_search/screens/search_page_filters.dart';
 import 'package:lfg_mobile/modules/create_activity/screens/activity_scaffold.dart';
 import 'package:lfg_mobile/modules/create_activity/screens/create_activity.dart';
 import 'package:lfg_mobile/modules/create_activity/screens/create_activity_step_four.dart';
@@ -76,7 +76,7 @@ final router = GoRouter(
           ),
           GoRoute(
             path: '/search/filters',
-            builder: (context, state) => const SearchFilters(),
+            builder: (context, state) => const SearchPageFilters(),
           ),
           GoRoute(
             path: '/notifications',

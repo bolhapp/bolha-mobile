@@ -23,11 +23,11 @@ class SignInFormState extends State<SignInForm> {
     try {
       isLoading = true;
       setState(() {});
-
+      debugPrint(_emailInputControler.text);
       UserResponse data = await AuthRespotitory().login(
         RegisteUserData(
-          email: _emailInputControler.value.toString(),
-          password: _passwordInputControler.value.toString()
+          email: _emailInputControler.text,
+          password: _passwordInputControler.text
         )
       );
 

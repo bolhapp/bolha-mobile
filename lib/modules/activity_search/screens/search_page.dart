@@ -4,14 +4,14 @@ import 'package:lfg_mobile/modules/core/repositories/activities/activities.dart'
 import 'package:lfg_mobile/modules/core/repositories/activities/models/activities.dart';
 import 'package:lfg_mobile/modules/my_activities/components/activity_list_item.dart';
 
-class SearchFilters extends StatefulWidget {
-  const SearchFilters({super.key});
+class SearchPage extends StatefulWidget {
+  const SearchPage({super.key});
 
   @override
-  State<SearchFilters> createState() => SearchFiltersState();
+  State<SearchPage> createState() => SearchPageState();
 }
 
-class SearchFiltersState extends State<SearchFilters> {
+class SearchPageState extends State<SearchPage> {
   bool showAllFilter = false;
   late Future<List<Activity>> userActivitites;
 
@@ -37,8 +37,12 @@ class SearchFiltersState extends State<SearchFilters> {
                           return const Center(
                               child: CircularProgressIndicator());
                         }
-
+                        
                         int itemCount = snapshot.data!.length;
+
+                        if (itemCount == 0) {
+                            return const Text("Empttg");
+                        }
 
                         return ListView.separated(
                             itemBuilder: (_, idx) {

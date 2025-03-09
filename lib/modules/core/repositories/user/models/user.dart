@@ -17,7 +17,7 @@ class User {
 class UserProfileData {
   final String? gender;
   final String? name;
-  final String? dateOfBirth;
+  final DateTime? dateOfBirth;
   final XFile?  userProfileImage;
 
   const UserProfileData({

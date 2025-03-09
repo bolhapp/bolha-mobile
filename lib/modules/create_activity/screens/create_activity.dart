@@ -43,7 +43,7 @@ class CreateActivityPage extends StatelessWidget {
               Text(
                 AppLocalizations.of(context)!.images,
                 style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.primaryFixed,
                     fontWeight: FontWeight.bold,
                     fontSize: 17),
               ),

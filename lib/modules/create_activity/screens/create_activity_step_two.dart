@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lfg_mobile/modules/core/repositories/activity_types/models/activity_types.dart';
 import 'package:lfg_mobile/modules/create_activity/block/activity_state_block.dart';
@@ -26,13 +25,17 @@ class CreateActivityStepTwoPage extends StatelessWidget {
                   flex: 1,
                   child: Text(AppLocalizations.of(context)!.isOnline,
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Theme.of(context).colorScheme.primaryFixed,
                           fontWeight: FontWeight.bold,
                           fontSize: 17))),
               Expanded(
                   flex: 0,
                   child: Switch(
-                    thumbIcon: const WidgetStatePropertyAll(Icon(Icons.close)),
+                    trackOutlineColor: WidgetStatePropertyAll(Theme.of(context).colorScheme.primary),
+                    inactiveTrackColor: Theme.of(context).colorScheme.secondary,
+                    inactiveThumbColor: Theme.of(context).colorScheme.primaryFixed,
+                    activeColor: Theme.of(context).colorScheme.primaryFixed,
+                    activeTrackColor: Theme.of(context).colorScheme.primary,
                     value: context.watch<CreateActivityStateCubit>().state.isOnline,
                     onChanged: context.read<CreateActivityStateCubit>().setIsOnline,
                   )),
@@ -45,7 +48,7 @@ class CreateActivityStepTwoPage extends StatelessWidget {
               Text(
                 AppLocalizations.of(context)!.address,
                 style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.primaryFixed,
                     fontWeight: FontWeight.bold,
                     fontSize: 17),
               ),
@@ -56,18 +59,21 @@ class CreateActivityStepTwoPage extends StatelessWidget {
                 controller: addressController,
                 onTap: () async  {
                     final ILocationSelector? result = await context.push<ILocationSelector>('/location_selector');
+                    debugPrint(result?.description);
                     if(result != null) {
+                      context.read<CreateActivityStateCubit>().setAddress(result.description);
                       addressController.value = TextEditingValue(text: result.description);
                     }
                 },
                 textAlign: TextAlign.start,
                 textAlignVertical: TextAlignVertical.top,
                 decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 30, top: 10), 
                   filled: true,
-                  fillColor: Theme.of(context).colorScheme.secondary,
+                  fillColor: Theme.of(context).colorScheme.primaryContainer,
                   hintText: AppLocalizations.of(context)!.exAddress,
                   hintStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
                     fontWeight: FontWeight.w300,
                   ),
                   border: const OutlineInputBorder(
@@ -86,7 +92,7 @@ class CreateActivityStepTwoPage extends StatelessWidget {
           Text(
             AppLocalizations.of(context)!.categories,
             style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.primaryFixed,
                 fontWeight: FontWeight.bold,
                 fontSize: 17),
           ),
@@ -129,7 +135,7 @@ class CreateActivityStepTwoPage extends StatelessWidget {
                   flex: 1,
                   child: Text(AppLocalizations.of(context)!.maxParticipants,
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Theme.of(context).colorScheme.primaryFixed,
                           fontWeight: FontWeight.bold,
                           fontSize: 17))),
               Expanded(
@@ -139,7 +145,7 @@ class CreateActivityStepTwoPage extends StatelessWidget {
                     width: 109,
                     height: 39,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: Theme.of(context).colorScheme.primaryContainer,
                       borderRadius: BorderRadius.circular(50),
                     ),
                     child: Row(
@@ -152,14 +158,19 @@ class CreateActivityStepTwoPage extends StatelessWidget {
                               .decreaseMaxParticipantsCounter(),
                           child: Icon(
                             Icons.remove,
-                            color: Theme.of(context).colorScheme.primary,
+                            color: Theme.of(context).colorScheme.onPrimaryContainer,
                           ),
                         ),
                         Builder(
                           builder: (_) {
                             // Whenever the state changes, only the Text is rebuilt.
                             final state = context.watch<CreateActivityStateCubit>().state.maxParticipants;
-                            return Text(state.toString());
+                            return Text(
+                              state.toString(),
+                              style: TextStyle(
+                                color:  Theme.of(context).colorScheme.onPrimaryContainer,
+                              ),
+                            );
                           },
                         ),
                         GestureDetector(
@@ -168,7 +179,7 @@ class CreateActivityStepTwoPage extends StatelessWidget {
                               .increaseMaxParticipantsCounter(),
                           child: Icon(
                             Icons.add,
-                            color: Theme.of(context).colorScheme.primary,
+                            color: Theme.of(context).colorScheme.onPrimaryContainer,
                           ),
                         ),
                       ],

@@ -37,12 +37,12 @@ class AddActivityCategories extends StatelessWidget {
         style: TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 15,
-            color: Theme.of(context).colorScheme.onPrimary),
+            color: Theme.of(context).colorScheme.onPrimaryContainer),
       ),
       iconAlignment: IconAlignment.end,
       icon: Icon(
         Icons.add,
-        color: Theme.of(context).colorScheme.onPrimary,
+        color: Theme.of(context).colorScheme.onPrimaryContainer,
         size: 20,
       ),
       style: ButtonStyle(
@@ -51,7 +51,7 @@ class AddActivityCategories extends StatelessWidget {
         fixedSize: const WidgetStatePropertyAll(Size(90, 40)),
         alignment: Alignment.centerRight,
         backgroundColor:
-            WidgetStatePropertyAll(Theme.of(context).colorScheme.primary),
+            WidgetStatePropertyAll(Theme.of(context).colorScheme.primaryContainer),
       ),
       onPressed: () {
         openActivityDialog(context);

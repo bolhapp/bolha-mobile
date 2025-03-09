@@ -10,7 +10,7 @@ class ActivityCard extends StatelessWidget {
   final DateTime date;
   final String location;
   final String hostName;
-  final String hostNamePicture;
+  final String? hostNamePicture;
   final int participantsCount;
   final int maxParticipants;
   final List<String> profilePictures;
@@ -51,7 +51,7 @@ class ActivityCard extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.w800,
-                              color: Theme.of(context).colorScheme.primary))),
+                              color: Theme.of(context).colorScheme.primaryFixed))),
                   ActivityCardDayWidget(
                     eventDate: date,
                     isOnline: false,
@@ -61,7 +61,7 @@ class ActivityCard extends StatelessWidget {
               const SizedBox(height: 8),
               Text(description,
                   style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
+                      color: Theme.of(context).colorScheme.primaryFixed,
                       fontSize: 14)),
               const SizedBox(height: 8),
               Wrap(
@@ -76,10 +76,10 @@ class ActivityCard extends StatelessWidget {
               const SizedBox(height: 8),
               Row(
                 children: [
-                  CircleAvatar(
+               /*    CircleAvatar(
                     radius: 16,
                     backgroundImage: NetworkImage(hostNamePicture),
-                  ),
+                  ), */
                   const SizedBox(width: 8),
                   Column(
                     children: [
@@ -87,14 +87,14 @@ class ActivityCard extends StatelessWidget {
                         AppLocalizations.of(context)!.hostname,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.primary,
+                            color: Theme.of(context).colorScheme.primaryFixed,
                             fontSize: 15),
                       ),
                       Text(
                         hostName,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.primary,
+                            color: Theme.of(context).colorScheme.primaryFixed,
                             fontSize: 15),
                       ),
                     ],
@@ -118,7 +118,7 @@ class ActivityCard extends StatelessWidget {
                           .nOfmParticipants(participantsCount, maxParticipants),
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Theme.of(context).colorScheme.primaryFixed,
                           fontSize: 15),
                     )
                   ]),
@@ -126,11 +126,11 @@ class ActivityCard extends StatelessWidget {
                     iconAlignment: IconAlignment.end,
                     icon: Icon(
                       Icons.arrow_right_alt,
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
                     ),
                     style: ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(
-                          Theme.of(context).colorScheme.primary),
+                          Theme.of(context).colorScheme.primaryFixed),
                     ),
                     onPressed: () {
                       handleOpenActivityDetail();
@@ -138,7 +138,7 @@ class ActivityCard extends StatelessWidget {
                     label: Text(
                       AppLocalizations.of(context)!.viewActivity,
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimary),
+                          color: Theme.of(context).colorScheme.onPrimaryFixedVariant),
                     ),
                   ),
                 ],
@@ -159,11 +159,11 @@ class ActivityCard extends StatelessWidget {
                     iconAlignment: IconAlignment.end,
                     icon: Icon(
                       Icons.arrow_right_alt,
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
                     ),
                     style: ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(
-                          Theme.of(context).colorScheme.primary),
+                          Theme.of(context).colorScheme.primaryFixed),
                     ),
                     onPressed: () {
                       handleOpenActivityDetail();
@@ -171,7 +171,7 @@ class ActivityCard extends StatelessWidget {
                     label: Text(
                       AppLocalizations.of(context)!.viewActivity,
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimary),
+                          color: Theme.of(context).colorScheme.onPrimaryFixedVariant),
                     ),
                   ),
                 )

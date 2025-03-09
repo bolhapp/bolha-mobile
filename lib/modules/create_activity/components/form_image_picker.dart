@@ -17,13 +17,13 @@ class ImageInput extends StatelessWidget {
             height: 148,
             width: 148,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).colorScheme.primaryContainer,
               borderRadius: BorderRadius.circular(20),
             ),
             child: image == null ? Center(
                 child: Icon(
               Icons.add,
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
             )): Image(fit: BoxFit.fill, image: image as ImageProvider))
       ],
     );

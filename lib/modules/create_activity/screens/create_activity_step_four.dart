@@ -23,18 +23,22 @@ class CreateActivityStepFourPageState
         children: [
           IconButton.filled(
               iconSize: 90,
-              onPressed: () {},
-              icon: Icon(
-                Icons.check,
-                color: Theme.of(context).colorScheme.onPrimary,
-              )),
+              style: ButtonStyle(
+              backgroundColor:
+                  WidgetStatePropertyAll(Theme.of(context).colorScheme.primaryFixed),
+            ),
+            onPressed: () {},
+            icon: Icon(
+              Icons.check,
+              color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
+            )),
           const SizedBox(
             height: 20,
           ),
           Text(
             "Parebens!",
             style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.primaryFixed,
                 fontWeight: FontWeight.w800,
                 fontSize: 30),
           ),
@@ -44,7 +48,7 @@ class CreateActivityStepFourPageState
           Text(
             "A sua atividade foi criada. Toque em compartilhar para convidar os seus amigos a participarem.",
             style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.primaryFixed,
                 fontWeight: FontWeight.bold,
                 fontSize: 15),
           ),
@@ -55,12 +59,12 @@ class CreateActivityStepFourPageState
             iconAlignment: IconAlignment.end,
             icon: Icon(
               Icons.share,
-              color: Theme.of(context).colorScheme.onPrimary,
+              color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
             ),
             style: ButtonStyle(
               minimumSize: const WidgetStatePropertyAll(Size(165, 48)),
               backgroundColor:
-                  WidgetStatePropertyAll(Theme.of(context).colorScheme.primary),
+                  WidgetStatePropertyAll(Theme.of(context).colorScheme.primaryFixed),
             ),
             onPressed: () {
               context.push("/search");
@@ -69,7 +73,7 @@ class CreateActivityStepFourPageState
               'Compartilhar',
               style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  color: Theme.of(context).colorScheme.onPrimary,
+                  color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
                   fontSize: 15),
             ),
           ),
@@ -81,7 +85,7 @@ class CreateActivityStepFourPageState
             child: Text(
               "Ver Actividade",
               style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.primaryFixed,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
@@ -92,7 +96,7 @@ class CreateActivityStepFourPageState
             child: Text(
               "Voltar ao Inicio",
               style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.primaryFixed,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),

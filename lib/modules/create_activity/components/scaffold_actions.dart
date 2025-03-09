@@ -19,7 +19,7 @@ class ActivityFirstStepActions extends StatelessWidget {
           child: Text(
             AppLocalizations.of(context)!.cancel,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.primaryFixed,
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
@@ -29,11 +29,11 @@ class ActivityFirstStepActions extends StatelessWidget {
           iconAlignment: IconAlignment.end,
           icon: Icon(
             Icons.arrow_right_alt_outlined,
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
           ),
           style: ButtonStyle(
             backgroundColor:
-                WidgetStatePropertyAll(Theme.of(context).colorScheme.primary),
+                WidgetStatePropertyAll(Theme.of(context).colorScheme.primaryFixed),
           ),
           onPressed: () {
             context.push("/create_activity/step_two");
@@ -42,7 +42,7 @@ class ActivityFirstStepActions extends StatelessWidget {
             AppLocalizations.of(context)!.next,
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.onPrimary,
+              color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
             ),
           ),
         )
@@ -51,8 +51,8 @@ class ActivityFirstStepActions extends StatelessWidget {
   }
 }
 
-class ActivitySecondThirdStepActions extends StatelessWidget {
-  const ActivitySecondThirdStepActions(
+class ActivitySecondStepActions extends StatelessWidget {
+  const ActivitySecondStepActions(
     { 
       super.key,
       required this.currentPath
@@ -73,7 +73,7 @@ class ActivitySecondThirdStepActions extends StatelessWidget {
           child: Text(
             AppLocalizations.of(context)!.goBack,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.primaryFixed,
               fontSize: 18,
               fontWeight: FontWeight.w600,
             ),
@@ -83,26 +83,79 @@ class ActivitySecondThirdStepActions extends StatelessWidget {
           iconAlignment: IconAlignment.end,
           icon: Icon(
             Icons.arrow_right_alt_outlined,
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
           ),
           style: ButtonStyle(
             backgroundColor:
-                WidgetStatePropertyAll(Theme.of(context).colorScheme.primary),
+                WidgetStatePropertyAll(Theme.of(context).colorScheme.primaryFixed),
           ),
           onPressed: () {
-            if(currentPath == "/create_activity/step_three") {
-              context.push("/create_activity/step_four");
-            }
-
-            if(currentPath == "/create_activity/step_two") {
-              context.push("/create_activity/step_three");
-            }
+            context.push("/create_activity/step_three");
           },
           label: Text(
             AppLocalizations.of(context)!.next,
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.onPrimary,
+              color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class ActivityThirdStepActions extends StatelessWidget {
+  const ActivityThirdStepActions(
+    { 
+      super.key,
+      required this.currentPath,
+      required this.onClick,
+    }
+  );
+
+  final String currentPath;
+  final Function() onClick;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        TextButton(
+          onPressed: () {
+            context.pop();
+          },
+          child: Text(
+            AppLocalizations.of(context)!.goBack,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.primaryFixed,
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        ElevatedButton.icon(
+          iconAlignment: IconAlignment.end,
+          icon: Icon(
+            Icons.arrow_right_alt_outlined,
+            color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
+          ),
+          style: ButtonStyle(
+            backgroundColor:
+                WidgetStatePropertyAll(Theme.of(context).colorScheme.primaryFixed),
+          ),
+          onPressed: ()  async {
+            bool newActivityCreated = await onClick();
+            if(newActivityCreated) {
+              context.push("/create_activity/step_four");
+            }
+          },
+          label: Text(
+            AppLocalizations.of(context)!.complete,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
             ),
           ),
         )

@@ -22,7 +22,7 @@ class FormInput extends StatelessWidget {
         Text(
           inputName,
           style: TextStyle(
-              color: Theme.of(context).colorScheme.primary,
+              color: Theme.of(context).colorScheme.primaryFixed,
               fontWeight: FontWeight.bold,
               fontSize: 17),
         ),
@@ -30,7 +30,7 @@ class FormInput extends StatelessWidget {
           height: 5,
         ),
         SizedBox(
-            height: isMultiLine ? 150 : 60,
+            height: isMultiLine ? 150 : 80,
             child: TextField(
                 onChanged: handleChanged,
                 maxLines: isMultiLine ? null : 1,
@@ -40,16 +40,18 @@ class FormInput extends StatelessWidget {
                 keyboardType:
                     isMultiLine ? TextInputType.multiline : TextInputType.text,
                 decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 30, top: 10), 
                   filled: true,
-                  fillColor: Theme.of(context).colorScheme.secondary,
+                  fillColor: Theme.of(context).colorScheme.primaryContainer,
                   hintText: inputHint,
                   hintStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 13,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
                     fontWeight: FontWeight.w300,
                   ),
                   border: const OutlineInputBorder(
                     borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                 ))),
       ],

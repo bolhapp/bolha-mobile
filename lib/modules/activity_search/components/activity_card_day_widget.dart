@@ -16,7 +16,7 @@ class ActivityCardDayWidget extends StatelessWidget {
     return  Container(
       width: 100,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary,
+        color: Theme.of(context).colorScheme.tertiary,
         borderRadius: BorderRadius.circular(10.0),
       ),
       padding:
@@ -25,18 +25,18 @@ class ActivityCardDayWidget extends StatelessWidget {
         children: [
           Text(isOnline ? AppLocalizations.of(context)!.online : "City???",
               style: TextStyle(
-                  color: Theme.of(context).colorScheme.onPrimary)),
+                  color: Theme.of(context).colorScheme.onTertiary)),
           const Divider(
             color: Colors.white,
           ),
           Text(
             AppLocalizations.of(context)!.getDay(eventDate),
             style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary)
+            color: Theme.of(context).colorScheme.onTertiary)
           ),
           Text(AppLocalizations.of(context)!.getMonth(eventDate),
             style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary)
+            color: Theme.of(context).colorScheme.onTertiary)
           ),
         ],
       ),

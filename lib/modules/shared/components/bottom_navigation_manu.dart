@@ -20,19 +20,22 @@ class BottomButton extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => handleClick(path),
-      child: Container(
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-            border: Border(
-                bottom: BorderSide(
-                    color: Theme.of(context).colorScheme.primary,
-                    width: isActive ? 5 : 0))),
-        child: Icon(
-          icon,
-          size: 30,
-          color: Theme.of(context).colorScheme.primary,
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            color: isActive ? Theme.of(context).colorScheme.primaryFixed : null,
+            borderRadius: BorderRadius.all(Radius.circular(50)) 
+          ),
+          child: Icon(
+            icon,
+            size: 30,
+            color: isActive ? Theme.of(context).colorScheme.onPrimaryFixedVariant : Theme.of(context).colorScheme.onPrimaryContainer,
+          ),
         ),
-      ),
+      ) 
+      
     );
   }
 }
@@ -59,7 +62,7 @@ class BottomNavigationMenuState extends State<BottomNavigationMenu> {
       width: MediaQuery.of(context).size.width,
       height: 70,
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary,
+          color: Theme.of(context).colorScheme.primaryContainer,
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(30), topRight: Radius.circular(30))),
       child: Row(

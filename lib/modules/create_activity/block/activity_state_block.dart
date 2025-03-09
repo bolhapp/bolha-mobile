@@ -6,6 +6,7 @@ import 'package:lfg_mobile/modules/core/repositories/activity_types/models/activ
 class CreateActivityState {
   const CreateActivityState(
       {required this.isOnline,
+      required this.isLoading,
       required this.categories,
       required this.maxParticipants,
       required this.address,
@@ -15,9 +16,13 @@ class CreateActivityState {
       required this.title,
       required this.images,
       required this.usersLvl,
-      required this.date});
+      required this.date,
+      required this.startTime,
+      required this.endTime,
+    });
 
   final bool isOnline;
+  final bool isLoading;
   final List<ActivityType> categories;
   final int maxParticipants;
   final String address;
@@ -27,10 +32,13 @@ class CreateActivityState {
   final String title;
   final List<XFile> images;
   final int usersLvl;
-  final String date;
+  final DateTime date;
+  final String startTime;
+  final String endTime;
 
   CreateActivityState copyWith(
       {bool? isOnline,
+      bool? isLoading,
       List<ActivityType>? categories,
       int? maxParticipants,
       String? address,
@@ -40,9 +48,13 @@ class CreateActivityState {
       String? title,
       List<XFile>? images,
       int? usersLvl,
-      String? date}) {
+      DateTime? date,
+      String? startTime,
+      String? endTime,
+    }) {
     return CreateActivityState(
         isOnline: isOnline ?? this.isOnline,
+        isLoading: isLoading ?? this.isLoading,
         categories: categories ?? this.categories,
         maxParticipants: maxParticipants ?? this.maxParticipants,
         address: address ?? this.address,
@@ -53,7 +65,10 @@ class CreateActivityState {
         title: title ?? this.title,
         images: images ?? this.images,
         usersLvl: usersLvl ?? this.usersLvl,
-        date: date ?? this.date);
+        date: date ?? this.date,
+        startTime: startTime ?? this.startTime,
+        endTime: endTime ?? this.endTime
+      );
   }
 }
 
@@ -61,6 +76,7 @@ class CreateActivityStateCubit extends Cubit<CreateActivityState> {
   CreateActivityStateCubit()
       : super(CreateActivityState(
             isOnline: false,
+            isLoading: false,
             categories: [],
             maxParticipants: 0,
             address: '',
@@ -70,11 +86,20 @@ class CreateActivityStateCubit extends Cubit<CreateActivityState> {
             title: '',
             images: [],
             usersLvl: 0,
-            date: DateTime.now().toString()));
+            date: DateTime.now(),
+            startTime: TimeOfDay.now().toString(),
+            endTime: TimeOfDay.now().toString(),
+        ));
 
   void setIsOnline(value) {
     emit(state.copyWith(
       isOnline: value
+    ));
+  }
+
+  void setIsLoading(value) {
+    emit(state.copyWith(
+      isLoading: value
     ));
   }
 
@@ -120,6 +145,18 @@ class CreateActivityStateCubit extends Cubit<CreateActivityState> {
   void setDate(value) {
     emit(state.copyWith(
       date: value
+    ));
+  }
+
+  void setStartTime(value) {
+    emit(state.copyWith(
+      startTime: value
+    ));
+  }
+
+  void setEndTime(value) {
+    emit(state.copyWith(
+      endTime: value
     ));
   }
 

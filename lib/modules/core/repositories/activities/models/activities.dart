@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class UserProfile {
   final String id;
   final String name;
@@ -59,9 +57,6 @@ class Activity {
   });
 
   factory Activity.fromJson(dynamic data) {
-    debugPrint("data['id']");
-    debugPrint(data['id']);
-    debugPrint("teste");
     return Activity(
       id: data["id"],
       name: data["name"],

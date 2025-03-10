@@ -59,7 +59,6 @@ class CreateActivityStepTwoPage extends StatelessWidget {
                 controller: addressController,
                 onTap: () async  {
                     final ILocationSelector? result = await context.push<ILocationSelector>('/location_selector');
-                    debugPrint(result?.description);
                     if(result != null) {
                       context.read<CreateActivityStateCubit>().setAddress(result.description);
                       addressController.value = TextEditingValue(text: result.description);

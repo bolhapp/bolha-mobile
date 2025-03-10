@@ -33,7 +33,6 @@ class SignUpFormState extends State<SignUpForm> {
       await storeToken(data.accessToken);
       context.go("/register/step_one");
     } catch (err) {
-      debugPrint(err.toString());
       // handle error
     }
     isLoading = false;

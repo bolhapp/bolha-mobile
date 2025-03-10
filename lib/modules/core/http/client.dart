@@ -35,13 +35,11 @@ class HttpClient {
 
   Future<Dio> getDio() async {
     final Dio dio = Dio(options);
-    debugPrint(isAuthenticated.toString());
     if (!isAuthenticated) {
       return Dio(options);
     }
 
     final String? accessToken = await getToken();
-    debugPrint(accessToken);
 
     if (accessToken == null || accessToken.isEmpty) {
       throw Exception('No access Token Available');
@@ -58,7 +56,6 @@ class HttpClient {
       [String path = "",
       Map<String, dynamic>? queryParameters = const {}]) async {
     final Dio dio = await getDio();
-    debugPrint(queryParameters.toString());
     return dio.get(options.baseUrl + resource + path,
         queryParameters: queryParameters);
   }

@@ -58,9 +58,7 @@ class UserRequestActivityItem extends StatelessWidget {
                 backgroundColor: WidgetStatePropertyAll(
                     Theme.of(context).colorScheme.secondary),
               ),
-              onPressed: () {
-                debugPrint("asd");
-              },
+              onPressed: () { },
               label: Text(
                 AppLocalizations.of(context)!.reject,
                 style: TextStyle(
@@ -78,9 +76,7 @@ class UserRequestActivityItem extends StatelessWidget {
                 backgroundColor: WidgetStatePropertyAll(
                     Theme.of(context).colorScheme.primary),
               ),
-              onPressed: () {
-                debugPrint("asd");
-              },
+              onPressed: () { },
               label: Text(
                 AppLocalizations.of(context)!.accept,
                 style: TextStyle(

@@ -113,9 +113,7 @@ class NotificationsPageState extends State<NotificationsPage> {
   @override
   void initState() {
     super.initState();
-    debugPrint("asd");
     userNotifications = NotificationsRespotitory().get();
-    debugPrint("done");
   }
 
   @override

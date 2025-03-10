@@ -143,9 +143,7 @@ class ActivityBottomDrawer extends StatelessWidget {
                         backgroundColor: WidgetStatePropertyAll(
                             Theme.of(context).colorScheme.primary),
                       ),
-                      onPressed: () {
-                        debugPrint("asd");
-                      },
+                      onPressed: () {},
                       label: Text(
                         AppLocalizations.of(context)!.join,
                         style: TextStyle(

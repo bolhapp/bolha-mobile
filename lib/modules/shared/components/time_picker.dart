@@ -30,9 +30,7 @@ class _TimePickerState extends State<TimePicker> {
             initialTime: TimeOfDay.now(),
             initialEntryMode: TimePickerEntryMode.dialOnly,
           );
-          debugPrint("time.toString()");
           if(time != null) {
-            debugPrint(time.format(context));
             setState(() {
               controller.text = time.format(context);
             });

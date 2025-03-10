@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 class IPlacesApiSuggestions {
   final String description;
@@ -45,7 +44,7 @@ Future<List<IPlacesApiSuggestions>?> getPlacesApiSuggestions(String input, Strin
       throw Exception('Failed to load predictions');
     }
   } catch (e) {
-    debugPrint(e.toString());
+   // TODO: Handle error
   }
 
   return null;

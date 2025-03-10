@@ -5,7 +5,6 @@ import 'package:lfg_mobile/modules/core/repositories/activities/models/activitie
 import 'package:lfg_mobile/modules/create_activity/block/activity_state_block.dart';
 import 'package:lfg_mobile/modules/create_activity/components/activity_form_progress_bar.dart';
 import 'package:lfg_mobile/modules/create_activity/components/scaffold_actions.dart';
-import 'package:go_router/go_router.dart';
 
 class ActivityScaffold extends StatelessWidget {
   const ActivityScaffold(
@@ -48,18 +47,13 @@ class ActivityScaffold extends StatelessWidget {
       activityTypes: activityFormBloc.state.categories.map((el) => el.id).toList(),
     );
 
-    debugPrint(data.toString());
 
     try  {
     activityFormBloc.setIsLoading(true);
-      debugPrint("super before");
       Activity activitCreated = await ActivitiesRespotitory().post(data);
-      debugPrint(activitCreated.toString());
       return true;
     } catch (err) {
       // TODO: handler future error?
-
-      debugPrint(err.toString());
       activityFormBloc.setIsLoading(false);
       return false;
     }

@@ -23,7 +23,6 @@ class SignInFormState extends State<SignInForm> {
     try {
       isLoading = true;
       setState(() {});
-      debugPrint(_emailInputControler.text);
       UserResponse data = await AuthRespotitory().login(
         RegisteUserData(
           email: _emailInputControler.text,
@@ -34,7 +33,6 @@ class SignInFormState extends State<SignInForm> {
       await storeToken(data.accessToken);
       context.go("/search");
     } catch (err) {
-      debugPrint(err.toString());
       // handle error
     }
     isLoading = false;

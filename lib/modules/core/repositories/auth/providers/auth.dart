@@ -5,17 +5,16 @@ import 'package:dio/dio.dart';
 import 'dart:convert';
 
 class AuthApiProvider {
-  HttpClient client = HttpClient(resource: "/auth");
+  HttpClient client = HttpClient(resource: "/auth", isAuthenticated: false);
 
   Future<dynamic> register(RegisteUserData data) async {
-    final Response<dynamic>  response = await client.post('/register', data, null);
+    final Response<dynamic>  response = await client.post(path: '/register', data: data);
 
-      // If the call to the server was successful, parse the JSON
     return json.decode(response.toString());
   }
 
   Future<dynamic> login(RegisteUserData data) async {
-    final Response<dynamic> response = await client.post('/login', data, null);
+    final Response<dynamic> response = await client.post(path: '/login', data: json.encode(data.toJson()));
 
     return json.decode(response.toString());
   }

@@ -15,26 +15,24 @@ class SignInForm extends StatefulWidget {
 
 class SignInFormState extends State<SignInForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailInputControler = TextEditingController();
-  final TextEditingController _passwordInputControler = TextEditingController();
+  final TextEditingController _emailInputControler = TextEditingController(text: "tiagoalves943@gmail.com");
+  final TextEditingController _passwordInputControler = TextEditingController(text: "Teset123!");
   bool isLoading = false;
 
    Future<void> handleLogin(BuildContext context) async {
     try {
       isLoading = true;
       setState(() {});
-
       UserResponse data = await AuthRespotitory().login(
         RegisteUserData(
-          email: _emailInputControler.value.toString(),
-          password: _passwordInputControler.value.toString()
+          email: _emailInputControler.text,
+          password: _passwordInputControler.text
         )
       );
 
       await storeToken(data.accessToken);
       context.go("/search");
     } catch (err) {
-      debugPrint(err.toString());
       // handle error
     }
     isLoading = false;

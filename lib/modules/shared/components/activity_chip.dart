@@ -11,13 +11,13 @@ class ActivityChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Chip(
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      deleteIconColor: Theme.of(context).colorScheme.onPrimary,
+      backgroundColor: Theme.of(context).colorScheme.primaryFixed,
+      deleteIconColor: Theme.of(context).colorScheme.onPrimaryFixedVariant,
       deleteIcon: Icon(
         Icons.close,
         shadows: const [Shadow(blurRadius: 1)],
         weight: 2,
-        color: Theme.of(context).colorScheme.onPrimary,
+        color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
         size: 22,
       ),
       onDeleted: () {
@@ -26,7 +26,7 @@ class ActivityChip extends StatelessWidget {
       label: Text(
         getActivityTranslation(activityId, context),
         style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
             fontWeight: FontWeight.bold,
             fontSize: 17),
       ),

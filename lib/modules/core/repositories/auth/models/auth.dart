@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class RegisteUserData {
   final String email;
   final String password;
@@ -13,6 +15,10 @@ class RegisteUserData {
       password: parsedJson['password'] as String
     );
   }
+
+  Map<String, dynamic> toJson() =>
+    {'email': email, 'password': password};
+
 }
 
 class UserResponse {
@@ -28,9 +34,9 @@ class UserResponse {
 
    factory  UserResponse.fromJson(Map<String, dynamic> parsedJson) {
     return UserResponse(
-      email: parsedJson['email'] as String,
-      accessToken: parsedJson['accessToken'] as String,
-      id: parsedJson['id'] as String
+      email: parsedJson['user']['email'] as String,
+      accessToken: parsedJson['token'] as String,
+      id: parsedJson['user']['id'] as String
     );
   }
 }

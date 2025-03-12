@@ -7,10 +7,10 @@ class ActivityFormProgressBar extends StatelessWidget {
 
   Color getColor(int checkPosition, BuildContext context) {
     if (checkPosition <= currentFormPosition) {
-      return Theme.of(context).colorScheme.primary;
+      return Theme.of(context).colorScheme.primaryFixed;
     }
 
-    return Theme.of(context).colorScheme.secondary;
+    return Theme.of(context).colorScheme.primary;
   }
 
   @override

@@ -127,7 +127,6 @@ class ActivityCard extends StatelessWidget {
                         Theme.of(context).colorScheme.primary),
                   ),
                   onPressed: () {
-                    debugPrint("asd");
                     handleOpenActivityDetail();
                   },
                   label: Text(

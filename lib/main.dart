@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lfg_mobile/modules/core/routes/routes.dart';
+import 'package:lfg_mobile/modules/core/theme/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,16 +25,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale('en'),
       ],
-      theme: ThemeData(
-        colorScheme: const ColorScheme.light(
-          primary: Color(0xff335C67),
-          onPrimary: Colors.white,
-          onPrimaryContainer: Color.fromRGBO(51, 92, 103, 100),
-          secondary: Color(0xffd7e1e3),
-          onSecondary: Colors.white,
-        ),
-        useMaterial3: true,
-      ),
+      theme: appTheme,
     );
   }
 }

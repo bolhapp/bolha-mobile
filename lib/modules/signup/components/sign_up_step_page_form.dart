@@ -36,7 +36,6 @@ class SignUpStepPageFormState extends State<SignUpStepPageForm> {
 
       /// do http request...
     } catch (err) {
-      debugPrint(err.toString());
       // handler Err
     }
     setState(() {

@@ -4,6 +4,7 @@ import 'package:lfg_mobile/modules/create_activity/block/activity_state_block.da
 import 'package:lfg_mobile/modules/create_activity/components/form_input.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lfg_mobile/modules/shared/components/datepicker.dart';
+import 'package:lfg_mobile/modules/shared/components/time_picker.dart';
 
 class CreateActivityStepThreePage extends StatelessWidget {
   const CreateActivityStepThreePage({super.key});
@@ -20,7 +21,7 @@ class CreateActivityStepThreePage extends StatelessWidget {
                   flex: 1,
                   child: Text(AppLocalizations.of(context)!.participantsLevel,
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Theme.of(context).colorScheme.primaryFixed,
                           fontWeight: FontWeight.bold,
                           fontSize: 17))),
               Expanded(
@@ -34,9 +35,12 @@ class CreateActivityStepThreePage extends StatelessWidget {
                       width: 150,
                       inputDecorationTheme: InputDecorationTheme(
                         filled: true,
-                        fillColor: Theme.of(context).colorScheme.secondary,
+                        fillColor:
+                            Theme.of(context).colorScheme.primaryContainer,
                         hintStyle: TextStyle(
-                            color: Theme.of(context).colorScheme.primary,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
                             fontWeight: FontWeight.w300),
                         border: const OutlineInputBorder(
                           borderSide: BorderSide.none,
@@ -65,7 +69,7 @@ class CreateActivityStepThreePage extends StatelessWidget {
               Text(
                 AppLocalizations.of(context)!.activityDate,
                 style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.primaryFixed,
                     fontWeight: FontWeight.bold,
                     fontSize: 17),
               ),
@@ -74,11 +78,12 @@ class CreateActivityStepThreePage extends StatelessWidget {
               ),
               DatePicker(
                 customInputDecoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 30, top: 10),
                   filled: true,
-                  fillColor: Theme.of(context).colorScheme.secondary,
+                  fillColor: Theme.of(context).colorScheme.primaryContainer,
                   hintText: AppLocalizations.of(context)!.activityDate,
                   hintStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
                     fontWeight: FontWeight.w300,
                   ),
                   border: const OutlineInputBorder(
@@ -95,12 +100,101 @@ class CreateActivityStepThreePage extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
+          Row(
+            spacing: 10,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.start,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primaryFixed,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    TimePicker(
+                      customInputDecoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(left: 30, top: 10),
+                        filled: true,
+                        fillColor:
+                            Theme.of(context).colorScheme.primaryContainer,
+                        hintText: AppLocalizations.of(context)!.startTime,
+                        hintStyle: TextStyle(
+                          color:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                          fontWeight: FontWeight.w300,
+                        ),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                        ),
+                      ),
+                      handleChanged: (data) {
+                        context
+                            .read<CreateActivityStateCubit>()
+                            .setStartTime(data);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.end,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.primaryFixed,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 17),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    TimePicker(
+                      customInputDecoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(left: 30, top: 10),
+                        filled: true,
+                        fillColor:
+                            Theme.of(context).colorScheme.primaryContainer,
+                        hintText: AppLocalizations.of(context)!.endTime,
+                        hintStyle: TextStyle(
+                          color:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                          fontWeight: FontWeight.w300,
+                        ),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                        ),
+                      ),
+                      handleChanged: (data) {
+                        context
+                            .read<CreateActivityStateCubit>()
+                            .setEndTime(data);
+                      },
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           FormInput(
             handleChanged: (data) =>
                 context.read<CreateActivityStateCubit>().setRequiremets(data),
             isMultiLine: true,
             inputName: AppLocalizations.of(context)!.requirementsOrRestrictions,
-            inputHint: AppLocalizations.of(context)!.exRequirementsOrRestrictions,
+            inputHint:
+                AppLocalizations.of(context)!.exRequirementsOrRestrictions,
           ),
           const SizedBox(
             height: 20,

@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lfg_mobile/modules/shared/components/datepicker.dart';
 
-class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+class SearchPageFilters extends StatefulWidget {
+  const SearchPageFilters({super.key});
 
   @override
-  State<SearchPage> createState() => SearchState();
+  State<SearchPageFilters> createState() => SearchState();
 }
 
-class SearchState extends State<SearchPage> {
+class SearchState extends State<SearchPageFilters> {
   bool showAllFilter = false;
   late Future<List<Activity>> userActivitites;
   final TextEditingController addressController = TextEditingController();

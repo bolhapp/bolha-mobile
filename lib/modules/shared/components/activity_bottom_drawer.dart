@@ -68,7 +68,7 @@ class ActivityBottomDrawer extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 16,
-                        backgroundImage: NetworkImage(activity.host.photo),
+                        backgroundImage: NetworkImage(activity.host!.photo),
                       ),
                       const SizedBox(width: 8),
                       Column(
@@ -81,7 +81,7 @@ class ActivityBottomDrawer extends StatelessWidget {
                                 fontSize: 15),
                           ),
                           Text(
-                            activity.host.name,
+                            activity.host!.name,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).colorScheme.primary,
@@ -143,9 +143,7 @@ class ActivityBottomDrawer extends StatelessWidget {
                         backgroundColor: WidgetStatePropertyAll(
                             Theme.of(context).colorScheme.primary),
                       ),
-                      onPressed: () {
-                        debugPrint("asd");
-                      },
+                      onPressed: () {},
                       label: Text(
                         AppLocalizations.of(context)!.join,
                         style: TextStyle(

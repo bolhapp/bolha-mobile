@@ -172,6 +172,15 @@
             }
         }
     },
+    "nACtivitiesFound": "{n} activities found",
+    "@nACtivitiesFound": {
+        "placeholders": {
+            "n": {
+                "type": "num",
+                "format": "compact"
+            }
+        }
+    },
     "begginer": "begginer",
     "@begginer": {},
     "mid": "mid",
@@ -268,6 +277,16 @@
     "@participantsLevel": {},
     "activityDate": "Activity Date",
     "@activityDate": {},
+    "start": "Start",
+    "@start": {},
+    "startTime": "Start Time",
+    "@startTime": {},
+    "endTime": "End Time",
+    "@endTime": {},
+    "end": "End",
+    "@end": {},
+    "endsAt": "End at",
+    "@endsAt": {},
     "requirementsOrRestrictions": "Requirements or restrictions",
     "@requirementsOrRestrictions": {},
     "exRequirementsOrRestrictions": "Ex: Requirements or restrictions",

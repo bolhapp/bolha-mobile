@@ -12,7 +12,7 @@ class DatePicker extends StatefulWidget {
 
   final String? restorationId;
   final InputDecoration? customInputDecoration;
-  final void Function(String)? handleChanged;
+  final void Function(DateTime)? handleChanged;
 
   @override
   State<DatePicker> createState() => _DatePickerState();
@@ -23,7 +23,7 @@ class _DatePickerState extends State<DatePicker> with RestorationMixin {
   @override
   String? get restorationId => widget.restorationId;
 
-  void Function(String)? get handleChanged => widget.handleChanged;
+  void Function(DateTime)? get handleChanged => widget.handleChanged;
   InputDecoration? get customInputDecoration => widget.customInputDecoration;
 
   final TextEditingController controller = TextEditingController();
@@ -59,9 +59,9 @@ class _DatePickerState extends State<DatePicker> with RestorationMixin {
         return DatePickerDialog(
           restorationId: 'date_picker_dialog',
           initialEntryMode: DatePickerEntryMode.calendarOnly,
-          initialDate: DateTime.fromMillisecondsSinceEpoch(arguments! as int),
-          firstDate: DateTime(2021),
-          lastDate: DateTime(2022),
+          initialDate: DateTime.now(),
+          firstDate: DateTime.now(),
+          lastDate: DateTime(DateTime.now().year + 1),
         );
       },
     );
@@ -80,7 +80,7 @@ class _DatePickerState extends State<DatePicker> with RestorationMixin {
           AppLocalizations.of(context)!.datePicker(_selectedDate.value);
 
       if (handleChanged != null) {
-        handleChanged!(newValue);
+        handleChanged!(newSelectedDate);
       }
 
       setState(() {

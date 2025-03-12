@@ -17,13 +17,13 @@ class ActivityContainerChip extends StatelessWidget {
         right: 10,
       ),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary,
+        color: Theme.of(context).colorScheme.primaryFixed,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Text(
         getActivityTranslation(tag, context),
         style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary,
+            color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
             fontSize: 12),
       ),
     );

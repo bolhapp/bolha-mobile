@@ -25,7 +25,9 @@ class UserApiProvider {
     }
 
     final response = await client.post(
-        '', formData, Options(contentType: "multipart/form-data"));
+        data: formData,
+        customOptions: Options(contentType: "multipart/form-data")
+    );
 
     if (response.statusCode == 200) {
       // If the call to the server was successful, parse the JSON

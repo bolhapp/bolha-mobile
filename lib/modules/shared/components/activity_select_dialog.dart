@@ -15,7 +15,6 @@ class ActivitySelectDialog extends StatefulWidget {
   final Function(String) handleListSelect;
   final Function(String) checkIfSelected;
 
-
   @override
   State<ActivitySelectDialog> createState() => ActivitySelectDialogState();
 }
@@ -25,7 +24,7 @@ class ActivitySelectDialogState extends State<ActivitySelectDialog> {
   static final List<String> activitites = [];
   Function(String) get handleListSelect => widget.handleListSelect;
   Function(String) get checkIfSelected => widget.checkIfSelected;
-  
+
   @override
   void initState() {
     super.initState();
@@ -50,18 +49,33 @@ class ActivitySelectDialogState extends State<ActivitySelectDialog> {
                           Text(
                             AppLocalizations.of(context)!.select_your_interests,
                             style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20,
-                              color: Theme.of(context).colorScheme.primary
-                            ),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20,
+                                color:
+                                    Theme.of(context).colorScheme.primaryFixed),
                           ),
                           const SizedBox(
                             height: 20,
                           ),
                           TextField(
-                            decoration:
-                                TextInputCommonDecoration.textFieldStyle(),
-                          ),
+                              decoration: InputDecoration(
+                            contentPadding: EdgeInsets.only(left: 30, top: 10),
+                            filled: true,
+                            fillColor:
+                                Theme.of(context).colorScheme.primaryContainer,
+                            hintText: AppLocalizations.of(context)!.exAddress,
+                            hintStyle: TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimaryContainer,
+                              fontWeight: FontWeight.w300,
+                            ),
+                            border: const OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30)),
+                            ),
+                          )),
                           const SizedBox(
                             height: 20,
                           ),
@@ -73,56 +87,77 @@ class ActivitySelectDialogState extends State<ActivitySelectDialog> {
                                     const SizedBox(
                                   height: 10,
                                 ),
-                                itemBuilder: (context, index) =>
-                                    GestureDetector(
-                                  onTap: () {
-                                    handleListSelect(snapshot
-                                        .data!.activityTypes
-                                        .elementAt(index)
-                                        .id);
+                                itemBuilder: (context, index) {
+                                  bool isElementSelected = checkIfSelected(snapshot
+                                                        .data!.activityTypes
+                                                        .elementAt(index)
+                                                        .id);
+                                  return GestureDetector(
+                                    onTap: () {
+                                      handleListSelect(snapshot
+                                          .data!.activityTypes
+                                          .elementAt(index)
+                                          .id);
 
-                                    setState(() {});
-                                  },
-                                  child: Container(
-                                      decoration: const BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10)),
-                                        color: Color(0xffd7e1e3),
-                                      ),
-                                      width: MediaQuery.of(context).size.width,
-                                      height: 40,
-                                      child: Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Row(children: [
-                                            Expanded(
-                                                child: Text(
-                                                    getActivityTranslation(
-                                                        snapshot
-                                                            .data!.activityTypes
-                                                            .elementAt(index)
-                                                            .id,
-                                                        context))),
-                                            Container(
-                                              height: 20,
-                                              width: 20,
-                                              color: Theme.of(context).colorScheme.onPrimary,
-                                              child: checkIfSelected(snapshot.data!
-                                                              .activityTypes
-                                                              .elementAt(index)
-                                                              .id)
-                                                  ? Icon(
-                                                      Icons.check,
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .primary,
-                                                      size: 20,
-                                                    )
-                                                  : null,
-                                            )
-                                          ]))),
-                                ),
+                                      setState(() {});
+                                    },
+                                    child: Container(
+                                        decoration:  BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          color:  isElementSelected ? Theme.of(context)
+                                                            .colorScheme
+                                                            .primaryFixed : Theme.of(context)
+                                                            .colorScheme
+                                                            .secondary ,
+                                        ),
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        height: 40,
+                                        child: Padding(
+                                            padding: const EdgeInsets.all(10),
+                                            child: Row(children: [
+                                              Expanded(
+                                                  child: Text(
+                                                getActivityTranslation(
+                                                    snapshot.data!.activityTypes
+                                                        .elementAt(index)
+                                                        .id,
+                                                    context),
+                                                style: TextStyle(
+                                                   color:  isElementSelected ? Theme.of(context)
+                                                            .colorScheme
+                                                            .onPrimaryFixedVariant : Theme.of(context)
+                                                            .colorScheme
+                                                            .onSecondary 
+                                                          ),
+                                              )),
+                                              Container(
+                                                height: 20,
+                                                width: 20,
+                                                color: isElementSelected ? Theme.of(context)
+                                                            .colorScheme
+                                                            .secondary : Theme.of(context)
+                                                            .colorScheme
+                                                            .secondaryContainer,
+                                                child: isElementSelected
+                                                    ? Icon(
+                                                        Icons.check,
+                                                        color: Theme.of(context)
+                                                            .colorScheme
+                                                            .onSecondary,
+                                                        size: 20,
+                                                      )
+                                                    : null,
+                                              )
+                                            ]))),
+                                  );
+                                },
                                 scrollDirection: Axis.vertical,
                               )),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           TextButton(
                               style: ButtonStyle(
                                 alignment: Alignment.centerRight,

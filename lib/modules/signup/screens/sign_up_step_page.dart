@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:lfg_mobile/modules/signup/components/sign_up_step_page_form.dart';
 
 class SignUpStepFormState {
-  String? dateOfBirth;
+  DateTime? dateOfBirth;
   String? name;
   String? genderDropdown;
   XFile? file;
@@ -20,7 +20,7 @@ class SignUpStepFormCubit extends Cubit<SignUpStepFormState> {
     state.name = value;
     emit(state);
   }
-  void updateDateOfBirth(String value) {
+  void updateDateOfBirth(DateTime value) {
     state.dateOfBirth = value;
     emit(state);
   }

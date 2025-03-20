@@ -1,4 +1,4 @@
-import 'package:lfg_mobile/modules/core/access_token/acces_token.dart';
+import 'package:lfg_mobile/modules/core/access_token/access_token.dart';
 import 'package:lfg_mobile/modules/shared/components/common_decoration.dart';
 import 'package:lfg_mobile/modules/core/repositories/auth/auth.dart';
 import 'package:lfg_mobile/modules/core/repositories/auth/models/auth.dart';
@@ -15,20 +15,19 @@ class SignInForm extends StatefulWidget {
 
 class SignInFormState extends State<SignInForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailInputControler = TextEditingController(text: "tiagoalves943@gmail.com");
-  final TextEditingController _passwordInputControler = TextEditingController(text: "Teset123!");
+  final TextEditingController _emailInputController =
+      TextEditingController(text: "tiagoalves943@gmail.com");
+  final TextEditingController _passwordInputController =
+      TextEditingController(text: "Teset123!");
   bool isLoading = false;
 
-   Future<void> handleLogin(BuildContext context) async {
+  Future<void> handleLogin(BuildContext context) async {
     try {
       isLoading = true;
       setState(() {});
-      UserResponse data = await AuthRespotitory().login(
-        RegisteUserData(
-          email: _emailInputControler.text,
-          password: _passwordInputControler.text
-        )
-      );
+      UserResponse data = await AuthRepository().login(RegisteUserData(
+          email: _emailInputController.text,
+          password: _passwordInputController.text));
 
       await storeToken(data.accessToken);
       context.go("/search");
@@ -49,11 +48,11 @@ class SignInFormState extends State<SignInForm> {
           Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: TextFormField(
-                controller: _emailInputControler,
+                controller: _emailInputController,
                 textAlign: TextAlign.left,
                 decoration: TextInputCommonDecoration.textFieldStyle(
                     hintTextStr: AppLocalizations.of(context)!.email),
-               validator: (String? value) {
+                validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter some text';
                   }
@@ -64,12 +63,12 @@ class SignInFormState extends State<SignInForm> {
               padding: const EdgeInsets.only(bottom: 1),
               child: TextFormField(
                 obscureText: true,
-                controller: _passwordInputControler,
+                controller: _passwordInputController,
                 enableSuggestions: false,
                 autocorrect: false,
                 textAlign: TextAlign.left,
                 decoration: TextInputCommonDecoration.textFieldStyle(
-                  hintTextStr: AppLocalizations.of(context)!.password),
+                    hintTextStr: AppLocalizations.of(context)!.password),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter some text';
@@ -81,7 +80,7 @@ class SignInFormState extends State<SignInForm> {
               padding: const EdgeInsets.only(bottom: 10),
               child: GestureDetector(
                   onTap: () {
-                    context.push("/recover_acount");
+                    context.push("/recover_account");
                   },
                   child: Text(
                     textAlign: TextAlign.right,
@@ -94,8 +93,7 @@ class SignInFormState extends State<SignInForm> {
                   ))),
           ElevatedButton(
             style: ButtonStyle(
-                maximumSize:
-                    const WidgetStatePropertyAll(Size.fromHeight(40)),
+                maximumSize: const WidgetStatePropertyAll(Size.fromHeight(40)),
                 backgroundColor: WidgetStatePropertyAll(
                     Theme.of(context).colorScheme.primary)),
             onPressed: () {
@@ -113,10 +111,10 @@ class SignInFormState extends State<SignInForm> {
                       color: Theme.of(context).colorScheme.onPrimary,
                     ))
                 : Text(
-              AppLocalizations.of(context)!.login,
-              style: const TextStyle(fontSize: 15, color: Colors.white),
-              textAlign: TextAlign.center,
-            ),
+                    AppLocalizations.of(context)!.login,
+                    style: const TextStyle(fontSize: 15, color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
           ),
         ],
       ),

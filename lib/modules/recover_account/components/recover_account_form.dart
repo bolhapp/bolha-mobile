@@ -39,9 +39,8 @@ class RecoverAccountFormState extends State<RecoverAccountForm> {
               )),
           ElevatedButton(
             style: ButtonStyle(
-                maximumSize:
-                    const MaterialStatePropertyAll(Size.fromHeight(40)),
-                backgroundColor: MaterialStatePropertyAll(
+                maximumSize: const WidgetStatePropertyAll(Size.fromHeight(40)),
+                backgroundColor: WidgetStatePropertyAll(
                     Theme.of(context).colorScheme.primary)),
             onPressed: () {
               // Validate will return true if the form is valid, or false if

@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "google.arb-editor",
+    "dart-code.dart-code",
+    "redhat.vscode-yaml",
+    "dart-code.flutter",
+    "ms-azuretools.vscode-docker",
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-portuguese"
+  ]
+}

@@ -21,14 +21,14 @@ class ActivitySelectDialog extends StatefulWidget {
 
 class ActivitySelectDialogState extends State<ActivitySelectDialog> {
   late Future<ActivityTypes> activityTypes;
-  static final List<String> activitites = [];
+  static final List<String> activities = [];
   Function(String) get handleListSelect => widget.handleListSelect;
   Function(String) get checkIfSelected => widget.checkIfSelected;
 
   @override
   void initState() {
     super.initState();
-    activityTypes = ActivityTypesRespotitory().get();
+    activityTypes = ActivityTypesRepository().get();
   }
 
   @override
@@ -88,10 +88,10 @@ class ActivitySelectDialogState extends State<ActivitySelectDialog> {
                                   height: 10,
                                 ),
                                 itemBuilder: (context, index) {
-                                  bool isElementSelected = checkIfSelected(snapshot
-                                                        .data!.activityTypes
-                                                        .elementAt(index)
-                                                        .id);
+                                  bool isElementSelected = checkIfSelected(
+                                      snapshot.data!.activityTypes
+                                          .elementAt(index)
+                                          .id);
                                   return GestureDetector(
                                     onTap: () {
                                       handleListSelect(snapshot
@@ -102,14 +102,16 @@ class ActivitySelectDialogState extends State<ActivitySelectDialog> {
                                       setState(() {});
                                     },
                                     child: Container(
-                                        decoration:  BoxDecoration(
+                                        decoration: BoxDecoration(
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(10)),
-                                          color:  isElementSelected ? Theme.of(context)
-                                                            .colorScheme
-                                                            .primaryFixed : Theme.of(context)
-                                                            .colorScheme
-                                                            .secondary ,
+                                          color: isElementSelected
+                                              ? Theme.of(context)
+                                                  .colorScheme
+                                                  .primaryFixed
+                                              : Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary,
                                         ),
                                         width:
                                             MediaQuery.of(context).size.width,
@@ -125,21 +127,24 @@ class ActivitySelectDialogState extends State<ActivitySelectDialog> {
                                                         .id,
                                                     context),
                                                 style: TextStyle(
-                                                   color:  isElementSelected ? Theme.of(context)
+                                                    color: isElementSelected
+                                                        ? Theme.of(context)
                                                             .colorScheme
-                                                            .onPrimaryFixedVariant : Theme.of(context)
+                                                            .onPrimaryFixedVariant
+                                                        : Theme.of(context)
                                                             .colorScheme
-                                                            .onSecondary 
-                                                          ),
+                                                            .onSecondary),
                                               )),
                                               Container(
                                                 height: 20,
                                                 width: 20,
-                                                color: isElementSelected ? Theme.of(context)
-                                                            .colorScheme
-                                                            .secondary : Theme.of(context)
-                                                            .colorScheme
-                                                            .secondaryContainer,
+                                                color: isElementSelected
+                                                    ? Theme.of(context)
+                                                        .colorScheme
+                                                        .secondary
+                                                    : Theme.of(context)
+                                                        .colorScheme
+                                                        .secondaryContainer,
                                                 child: isElementSelected
                                                     ? Icon(
                                                         Icons.check,

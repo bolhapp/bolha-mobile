@@ -1,8 +1,6 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:lfg_mobile/modules/core/access_token/acces_token.dart';
+import 'package:lfg_mobile/modules/core/access_token/access_token.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class HttpClient {
   String resource = "";
@@ -13,7 +11,8 @@ class HttpClient {
     this.isAuthenticated = false,
   });
 
-  static String baseUrl = "http://10.0.2.2:3000/api/v1";
+  static String baseUrl =
+      dotenv.get("API_URL", fallback: "http://10.0.2.2:3000/api/v1");
 
   static final options = BaseOptions(
     baseUrl: baseUrl,
@@ -61,11 +60,9 @@ class HttpClient {
   }
 
   Future<dynamic> post(
-      {
-      String path = "",
+      {String path = "",
       Object data = const {},
-      Options? customOptions
-    }) async {
+      Options? customOptions}) async {
     final Dio dio = await getDio();
 
     return dio.post(options.baseUrl + resource + path,

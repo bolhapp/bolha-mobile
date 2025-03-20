@@ -6,46 +6,46 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lfg_mobile/modules/notifications/components/activity_list_item_banner.dart';
 import 'package:lfg_mobile/modules/notifications/components/user_request_activity_item.dart';
 
-class AgregateNotificationModel {
+class AggregatedNotificationModel {
   final Activity? activity;
   final List<NotificationModel> notifications;
 
-  const AgregateNotificationModel({
+  const AggregatedNotificationModel({
     this.activity,
     required this.notifications,
   });
 }
 
-List<AgregateNotificationModel> getAggregatedNotificationsData(
+List<AggregatedNotificationModel> getAggregatedNotificationsData(
     List<NotificationModel> data) {
-  List<AgregateNotificationModel> notificationsAgregated = [];
-  Map<String, AgregateNotificationModel> mapActivtyIdToList = {};
+  List<AggregatedNotificationModel> notificationsAggregated = [];
+  Map<String, AggregatedNotificationModel> mapActivityIdToList = {};
 
   for (var notification in data) {
     if (notification.activity == null) {
-      notificationsAgregated
-          .add(AgregateNotificationModel(notifications: [notification]));
+      notificationsAggregated
+          .add(AggregatedNotificationModel(notifications: [notification]));
       continue;
     }
 
-    if (mapActivtyIdToList.containsKey(notification.activity!.id)) {
-      mapActivtyIdToList[notification.activity!.id]!
+    if (mapActivityIdToList.containsKey(notification.activity!.id)) {
+      mapActivityIdToList[notification.activity!.id]!
           .notifications
           .add(notification);
       continue;
     }
-    AgregateNotificationModel newEntry = AgregateNotificationModel(
+    AggregatedNotificationModel newEntry = AggregatedNotificationModel(
         notifications: [notification], activity: notification.activity);
 
-    notificationsAgregated.add(newEntry);
-    mapActivtyIdToList[notification.activity!.id] = newEntry;
+    notificationsAggregated.add(newEntry);
+    mapActivityIdToList[notification.activity!.id] = newEntry;
   }
 
-  return notificationsAgregated;
+  return notificationsAggregated;
 }
 
 List<Widget> getListWidgetBaseOnAggregatedNotifications(
-    List<AgregateNotificationModel> notificationsAgregated,
+    List<AggregatedNotificationModel> notificationsAggregated,
     int itemCount,
     BuildContext context) {
   List<Widget> notificationItems = [
@@ -65,7 +65,7 @@ List<Widget> getListWidgetBaseOnAggregatedNotifications(
     ])
   ];
 
-  for (var data in notificationsAgregated) {
+  for (var data in notificationsAggregated) {
     if (data.activity == null) {
       notificationItems
           .add(getWidgetBaseOnNotificationType(data.notifications.first, null));
@@ -113,7 +113,7 @@ class NotificationsPageState extends State<NotificationsPage> {
   @override
   void initState() {
     super.initState();
-    userNotifications = NotificationsRespotitory().get();
+    userNotifications = NotificationsRepository().get();
   }
 
   @override
@@ -138,21 +138,22 @@ class NotificationsPageState extends State<NotificationsPage> {
                       // first we sort
                       itemsClone.sort((notA, notB) =>
                           notA.createdAt.isBefore(notB.createdAt) ? 1 : -1);
-                      // then we agregate by if has not else will be just a notification
-                      List<AgregateNotificationModel> notificationsAgregated =
+                      // then we aggregate by if has not else will be just a notification
+                      List<AggregatedNotificationModel>
+                          notificationsAggregated =
                           getAggregatedNotificationsData(snapshot.data!);
-                      List<Widget> notificationsWidgest =
+                      List<Widget> notificationsWidget =
                           getListWidgetBaseOnAggregatedNotifications(
-                              notificationsAgregated, itemCount, context);
+                              notificationsAggregated, itemCount, context);
 
                       return ListView.separated(
                           itemBuilder: (_, idx) {
-                            return notificationsWidgest[idx];
+                            return notificationsWidget[idx];
                           },
                           separatorBuilder: (_, idx) => Divider(
                                 color: Theme.of(context).colorScheme.secondary,
                               ),
-                          itemCount: notificationsWidgest.length);
+                          itemCount: notificationsWidget.length);
                     }))
           ],
         ));

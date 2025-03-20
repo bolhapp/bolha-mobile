@@ -26,7 +26,7 @@ class SignUpStepPageFormState extends State<SignUpStepPageForm> {
         isLoading = true;
       });
 
-      await UserRespotitory().updateUser(UserProfileData(
+      await UserRepository().updateUser(UserProfileData(
           gender: context.read<SignUpStepFormCubit>().state.genderDropdown,
           name: context.read<SignUpStepFormCubit>().state.name,
           dateOfBirth: context.read<SignUpStepFormCubit>().state.dateOfBirth,

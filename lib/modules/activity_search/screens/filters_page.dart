@@ -16,13 +16,13 @@ class FiltersPage extends StatefulWidget {
 
 class FiltersState extends State<FiltersPage> {
   bool showAllFilter = false;
-  late Future<List<Activity>> userActivitites;
+  late Future<List<Activity>> userActivities;
   final TextEditingController addressController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    userActivitites = ActivitiesRespotitory().get();
+    userActivities = ActivitiesRepository().get();
   }
 
   @override
@@ -139,13 +139,13 @@ class FiltersState extends State<FiltersPage> {
                 fontSize: 17),
           ),
           const SizedBox(height: 10),
-         const Row(
+          const Row(
             children: [
-              ParticipantLvlCheckbox(participantLevelIndentifier: "Beginner"),
-              ParticipantLvlCheckbox(participantLevelIndentifier: "Intermedio"),
-              ParticipantLvlCheckbox(participantLevelIndentifier: "Avançado"),
-            ]
-          ,)
+              ParticipantLvlCheckbox(participantLevelIdentifier: "Beginner"),
+              ParticipantLvlCheckbox(participantLevelIdentifier: "Intermedio"),
+              ParticipantLvlCheckbox(participantLevelIdentifier: "Avançado"),
+            ],
+          )
         ],
       ),
     );

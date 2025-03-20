@@ -38,7 +38,7 @@ class LocationSelectorState extends State<LocationSelector> {
 
   void getSuggestion(String input) async {
     try {
-      // should generate an uuid for seassion
+      // should generate an uuid for session
       List<IPlacesApiSuggestions>? data =
           await getPlacesApiSuggestions(input, "asedansdqw-eqwsaas-qweq");
       if (data != null) {
@@ -98,9 +98,8 @@ class LocationSelectorState extends State<LocationSelector> {
                 return GestureDetector(
                   onTap: () async {
                     context.pop(ILocationSelector(
-                     description: _placeList.elementAt(index).description,
-                     placeId: _placeList.elementAt(index).placeId
-                    ));
+                        description: _placeList.elementAt(index).description,
+                        placeId: _placeList.elementAt(index).placeId));
                   },
                   child: ListTile(
                     title: Text(_placeList.elementAt(index).description,

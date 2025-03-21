@@ -4,11 +4,27 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:bolha/modules/core/routes/routes.dart';
 import 'package:bolha/modules/core/theme/theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
-
-  runApp(const Bolha());
+  // todo: configure environment, release and whatever else might be useful
+  // todo: setup flavors
+  await SentryFlutter.init(
+    (options) {
+      // disabled until flavors are implemented as we don't want this to be active during dev
+      // options.dns = 'https://73498c6341cd47a98ef1b7b4b376096d@o4507935073107968.ingest.de.sentry.io/4509015290085456';
+      options.dsn = "";
+      // Adds request headers and IP for users,
+      // visit: https://docs.sentry.io/platforms/dart/data-management/data-collected/ for more info
+      options.sendDefaultPii = true;
+    },
+    appRunner: () => runApp(
+      SentryWidget(
+        child: Bolha(),
+      ),
+    ),
+  );
 }
 
 class Bolha extends StatelessWidget {

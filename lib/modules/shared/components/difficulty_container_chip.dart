@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lfg_mobile/modules/shared/utils/activities.dart';
 
-class DificultyContainerChip extends StatelessWidget {
-  const DificultyContainerChip(
-      {super.key, required this.lvl});
+class DifficultyContainerChip extends StatelessWidget {
+  const DifficultyContainerChip({super.key, required this.lvl});
 
   final int lvl;
 
@@ -23,8 +22,7 @@ class DificultyContainerChip extends StatelessWidget {
       child: Text(
         getActivitySkillLvlTranslation(lvl.toString(), context),
         style: TextStyle(
-            color: Theme.of(context).colorScheme.primary,
-            fontSize: 12),
+            color: Theme.of(context).colorScheme.primary, fontSize: 12),
       ),
     );
   }

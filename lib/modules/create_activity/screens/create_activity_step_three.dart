@@ -190,7 +190,7 @@ class CreateActivityStepThreePage extends StatelessWidget {
           ),
           FormInput(
             handleChanged: (data) =>
-                context.read<CreateActivityStateCubit>().setRequiremets(data),
+                context.read<CreateActivityStateCubit>().setrequirements(data),
             isMultiLine: true,
             inputName: AppLocalizations.of(context)!.requirementsOrRestrictions,
             inputHint:
@@ -202,7 +202,7 @@ class CreateActivityStepThreePage extends StatelessWidget {
           FormInput(
             handleChanged: (data) => context
                 .read<CreateActivityStateCubit>()
-                .setAdictionalInformation(data),
+                .setadditionalInformation(data),
             isMultiLine: true,
             inputName: AppLocalizations.of(context)!.additionalInformation,
             inputHint: AppLocalizations.of(context)!.exAdditionalInformation,

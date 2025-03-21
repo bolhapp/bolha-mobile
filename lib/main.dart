@@ -3,12 +3,16 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lfg_mobile/modules/core/routes/routes.dart';
 import 'package:lfg_mobile/modules/core/theme/theme.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
-  runApp(const MyApp());
+Future main() async {
+  await dotenv.load(fileName: ".env");
+
+  runApp(const Bolha());
 }
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+
+class Bolha extends StatelessWidget {
+  const Bolha({super.key});
 
   // This widget is the root of your application.
   @override

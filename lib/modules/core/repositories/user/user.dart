@@ -2,8 +2,7 @@ import 'dart:async';
 import 'package:lfg_mobile/modules/core/repositories/user/models/user.dart';
 import 'package:lfg_mobile/modules/core/repositories/user/providers/user.dart';
 
-
-class UserRespotitory {
+class UserRepository {
   UserApiProvider provider = UserApiProvider();
 
   Future<UserProfileData> updateUser(UserProfileData userProfileData) async {

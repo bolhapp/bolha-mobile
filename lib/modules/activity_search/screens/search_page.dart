@@ -14,12 +14,12 @@ class SearchPage extends StatefulWidget {
 
 class SearchPageState extends State<SearchPage> {
   bool showAllFilter = false;
-  late Future<List<Activity>> userActivitites;
+  late Future<List<Activity>> userActivities;
 
   @override
   void initState() {
     super.initState();
-    userActivitites = ActivitiesRespotitory().get();
+    userActivities = ActivitiesRepository().get();
   }
 
   @override
@@ -98,7 +98,7 @@ class SearchPageState extends State<SearchPage> {
           Expanded(
               flex: 1,
               child: FutureBuilder<List<Activity>>(
-                  future: userActivitites,
+                  future: userActivities,
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       return const Center(child: CircularProgressIndicator());
@@ -121,8 +121,9 @@ class SearchPageState extends State<SearchPage> {
                                         .nActivitiesFound(itemCount),
                                     style: TextStyle(
                                       fontSize: 16,
-                                      color:
-                                          Theme.of(context).colorScheme.primaryFixed,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primaryFixed,
                                     )),
                                 const Expanded(
                                     flex: 1,
@@ -153,10 +154,12 @@ class SearchPageState extends State<SearchPage> {
                                       maxParticipants: snapshot.data!
                                           .elementAt(idx)
                                           .maxParticipants,
-                                      hostNamePicture: null/*  snapshot.data!
+                                      hostNamePicture:
+                                          null /*  snapshot.data!
                                           .elementAt(idx)
                                           .host
-                                          .photo */,
+                                          .photo */
+                                      ,
                                       activityTypes: snapshot.data!
                                           .elementAt(idx)
                                           .activityTypes,

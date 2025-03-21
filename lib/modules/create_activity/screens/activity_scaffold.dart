@@ -24,13 +24,14 @@ class ActivityScaffold extends StatelessWidget {
     }
 
     if (currentPath == "/create_activity/step_three") {
-      return ActivityThirdStepActions(currentPath: currentPath, onClick: submitNewActivity);
+      return ActivityThirdStepActions(
+          currentPath: currentPath, onClick: submitNewActivity);
     }
 
     return null;
   }
 
-   Future<bool> submitNewActivity() async {
+  Future<bool> submitNewActivity() async {
     NewActivity data = NewActivity(
       name: activityFormBloc.state.title,
       description: activityFormBloc.state.description,
@@ -41,16 +42,16 @@ class ActivityScaffold extends StatelessWidget {
       address: activityFormBloc.state.address,
       maxParticipants: activityFormBloc.state.maxParticipants,
       difficulty: activityFormBloc.state.usersLvl,
-      restrictions: activityFormBloc.state.requiremets,
-      extraDetails: activityFormBloc.state.adictionalInformation,
+      restrictions: activityFormBloc.state.requirements,
+      extraDetails: activityFormBloc.state.additionalInformation,
       pics: [],
-      activityTypes: activityFormBloc.state.categories.map((el) => el.id).toList(),
+      activityTypes:
+          activityFormBloc.state.categories.map((el) => el.id).toList(),
     );
 
-
-    try  {
-    activityFormBloc.setIsLoading(true);
-      Activity activitCreated = await ActivitiesRespotitory().post(data);
+    try {
+      activityFormBloc.setIsLoading(true);
+      Activity activityCreated = await ActivitiesRepository().post(data);
       return true;
     } catch (err) {
       // TODO: handler future error?

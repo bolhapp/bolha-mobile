@@ -26,7 +26,7 @@ final router = GoRouter(
       builder: (context, state) => const SignInPage(),
     ),
     GoRoute(
-      path: '/recover_acount',
+      path: '/recover_account',
       builder: (context, state) => const RecoverAccountPage(),
     ),
     GoRoute(
@@ -66,7 +66,8 @@ final router = GoRouter(
               ],
             ),
             body: child,
-            bottomNavigationBar: BottomNavigationMenu(currentPath: state.fullPath!),
+            bottomNavigationBar:
+                BottomNavigationMenu(currentPath: state.fullPath!),
           );
         },
         routes: [
@@ -89,7 +90,10 @@ final router = GoRouter(
         ]),
     ShellRoute(
         builder: (BuildContext context, GoRouterState state, Widget child) {
-          return ActivityScaffold(currentPath: state.fullPath!,child: child,);
+          return ActivityScaffold(
+            currentPath: state.fullPath!,
+            child: child,
+          );
         },
         routes: [
           GoRoute(

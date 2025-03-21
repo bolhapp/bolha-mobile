@@ -1,4 +1,4 @@
-import 'package:lfg_mobile/modules/core/access_token/acces_token.dart';
+import 'package:lfg_mobile/modules/core/access_token/access_token.dart';
 import 'package:lfg_mobile/modules/shared/components/common_decoration.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -15,20 +15,18 @@ class SignUpForm extends StatefulWidget {
 
 class SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailInputControler = TextEditingController();
-  final TextEditingController _passwordInputControler = TextEditingController();
+  final TextEditingController _emailInputController = TextEditingController();
+  final TextEditingController _passwordInputController =
+      TextEditingController();
   bool isLoading = false;
 
   Future<void> handleRegisteUser(BuildContext context) async {
     try {
       isLoading = true;
       setState(() {});
-      UserResponse data = await AuthRespotitory().registeUser(
-        RegisteUserData(
-          email: _emailInputControler.value.toString(),
-          password: _passwordInputControler.value.toString()
-        )
-      );
+      UserResponse data = await AuthRepository().registeUser(RegisteUserData(
+          email: _emailInputController.value.toString(),
+          password: _passwordInputController.value.toString()));
 
       await storeToken(data.accessToken);
       context.go("/register/step_one");
@@ -50,7 +48,7 @@ class SignUpFormState extends State<SignUpForm> {
               padding: const EdgeInsets.only(bottom: 10),
               child: TextFormField(
                 textAlign: TextAlign.left,
-                controller: _emailInputControler,
+                controller: _emailInputController,
                 ignorePointers: isLoading,
                 decoration: TextInputCommonDecoration.textFieldStyle(
                     hintTextStr: AppLocalizations.of(context)!.email),
@@ -64,14 +62,14 @@ class SignUpFormState extends State<SignUpForm> {
           Padding(
               padding: const EdgeInsets.only(bottom: 10),
               child: TextFormField(
-                controller: _passwordInputControler,
+                controller: _passwordInputController,
                 obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
                 textAlign: TextAlign.left,
                 ignorePointers: isLoading,
                 decoration: TextInputCommonDecoration.textFieldStyle(
-                hintTextStr: AppLocalizations.of(context)!.password),
+                    hintTextStr: AppLocalizations.of(context)!.password),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return AppLocalizations.of(context)!.pleaseEnterSomeText;
@@ -81,9 +79,9 @@ class SignUpFormState extends State<SignUpForm> {
               )),
           ElevatedButton(
             style: ButtonStyle(
-              maximumSize: const WidgetStatePropertyAll(Size.fromHeight(40)),
-              backgroundColor: WidgetStatePropertyAll(Theme.of(context).colorScheme.primary)
-            ),
+                maximumSize: const WidgetStatePropertyAll(Size.fromHeight(40)),
+                backgroundColor: WidgetStatePropertyAll(
+                    Theme.of(context).colorScheme.primary)),
             onPressed: () {
               if (_formKey.currentState!.validate() && !isLoading) {
                 handleRegisteUser(context);
@@ -97,7 +95,7 @@ class SignUpFormState extends State<SignUpForm> {
                       color: Theme.of(context).colorScheme.onPrimary,
                     ))
                 : Text(
-                  AppLocalizations.of(context)!.confirm,
+                    AppLocalizations.of(context)!.confirm,
                     style: const TextStyle(fontSize: 15, color: Colors.white),
                     textAlign: TextAlign.center,
                   ),

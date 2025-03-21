@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:lfg_mobile/modules/core/repositories/activities/models/activities.dart';
-import 'package:lfg_mobile/modules/core/repositories/activities/providers/activities.dart';
+import 'package:bolha/modules/core/repositories/activities/models/activities.dart';
+import 'package:bolha/modules/core/repositories/activities/providers/activities.dart';
 
 class ActivitiesRepository {
   ActivitiesApiProvider provider = ActivitiesApiProvider();

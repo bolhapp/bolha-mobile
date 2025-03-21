@@ -1,4 +1,4 @@
-package com.example.lfg_mobile
+package com.example.bolha
 
 import io.flutter.embedding.android.FlutterActivity
 

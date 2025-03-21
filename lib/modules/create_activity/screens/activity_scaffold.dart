@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:lfg_mobile/modules/core/repositories/activities/activities.dart';
-import 'package:lfg_mobile/modules/core/repositories/activities/models/activities.dart';
-import 'package:lfg_mobile/modules/create_activity/block/activity_state_block.dart';
-import 'package:lfg_mobile/modules/create_activity/components/activity_form_progress_bar.dart';
-import 'package:lfg_mobile/modules/create_activity/components/scaffold_actions.dart';
+import 'package:bolha/modules/core/repositories/activities/activities.dart';
+import 'package:bolha/modules/core/repositories/activities/models/activities.dart';
+import 'package:bolha/modules/create_activity/block/activity_state_block.dart';
+import 'package:bolha/modules/create_activity/components/activity_form_progress_bar.dart';
+import 'package:bolha/modules/create_activity/components/scaffold_actions.dart';
 
 class ActivityScaffold extends StatelessWidget {
   const ActivityScaffold(

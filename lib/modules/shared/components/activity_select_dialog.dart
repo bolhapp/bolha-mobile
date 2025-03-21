@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:lfg_mobile/modules/core/repositories/activity_types/activity_types.dart';
-import 'package:lfg_mobile/modules/core/repositories/activity_types/models/activity_types.dart';
-import 'package:lfg_mobile/modules/shared/components/common_decoration.dart';
-import 'package:lfg_mobile/modules/shared/utils/activities.dart';
+import 'package:bolha/modules/core/repositories/activity_types/activity_types.dart';
+import 'package:bolha/modules/core/repositories/activity_types/models/activity_types.dart';
+import 'package:bolha/modules/shared/components/common_decoration.dart';
+import 'package:bolha/modules/shared/utils/activities.dart';
 
 class ActivitySelectDialog extends StatefulWidget {
   const ActivitySelectDialog({

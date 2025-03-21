@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:lfg_mobile/modules/core/repositories/activity_types/models/activity_types.dart';
-import 'package:lfg_mobile/modules/create_activity/block/activity_state_block.dart';
-import 'package:lfg_mobile/modules/location_selector/screens/location_selector.dart';
-import 'package:lfg_mobile/modules/shared/components/activity_chip.dart';
-import 'package:lfg_mobile/modules/shared/components/add_activity_categories.dart';
+import 'package:bolha/modules/core/repositories/activity_types/models/activity_types.dart';
+import 'package:bolha/modules/create_activity/block/activity_state_block.dart';
+import 'package:bolha/modules/location_selector/screens/location_selector.dart';
+import 'package:bolha/modules/shared/components/activity_chip.dart';
+import 'package:bolha/modules/shared/components/add_activity_categories.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
@@ -31,13 +31,19 @@ class CreateActivityStepTwoPage extends StatelessWidget {
               Expanded(
                   flex: 0,
                   child: Switch(
-                    trackOutlineColor: WidgetStatePropertyAll(Theme.of(context).colorScheme.primary),
+                    trackOutlineColor: WidgetStatePropertyAll(
+                        Theme.of(context).colorScheme.primary),
                     inactiveTrackColor: Theme.of(context).colorScheme.secondary,
-                    inactiveThumbColor: Theme.of(context).colorScheme.primaryFixed,
+                    inactiveThumbColor:
+                        Theme.of(context).colorScheme.primaryFixed,
                     activeColor: Theme.of(context).colorScheme.primaryFixed,
                     activeTrackColor: Theme.of(context).colorScheme.primary,
-                    value: context.watch<CreateActivityStateCubit>().state.isOnline,
-                    onChanged: context.read<CreateActivityStateCubit>().setIsOnline,
+                    value: context
+                        .watch<CreateActivityStateCubit>()
+                        .state
+                        .isOnline,
+                    onChanged:
+                        context.read<CreateActivityStateCubit>().setIsOnline,
                   )),
             ],
           ),
@@ -56,30 +62,34 @@ class CreateActivityStepTwoPage extends StatelessWidget {
                 height: 5,
               ),
               TextField(
-                controller: addressController,
-                onTap: () async  {
-                    final ILocationSelector? result = await context.push<ILocationSelector>('/location_selector');
-                    if(result != null) {
-                      context.read<CreateActivityStateCubit>().setAddress(result.description);
-                      addressController.value = TextEditingValue(text: result.description);
+                  controller: addressController,
+                  onTap: () async {
+                    final ILocationSelector? result = await context
+                        .push<ILocationSelector>('/location_selector');
+                    if (result != null) {
+                      context
+                          .read<CreateActivityStateCubit>()
+                          .setAddress(result.description);
+                      addressController.value =
+                          TextEditingValue(text: result.description);
                     }
-                },
-                textAlign: TextAlign.start,
-                textAlignVertical: TextAlignVertical.top,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(left: 30, top: 10), 
-                  filled: true,
-                  fillColor: Theme.of(context).colorScheme.primaryContainer,
-                  hintText: AppLocalizations.of(context)!.exAddress,
-                  hintStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
-                    fontWeight: FontWeight.w300,
-                  ),
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                  ),
-                ))
+                  },
+                  textAlign: TextAlign.start,
+                  textAlignVertical: TextAlignVertical.top,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(left: 30, top: 10),
+                    filled: true,
+                    fillColor: Theme.of(context).colorScheme.primaryContainer,
+                    hintText: AppLocalizations.of(context)!.exAddress,
+                    hintStyle: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      fontWeight: FontWeight.w300,
+                    ),
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                    ),
+                  ))
             ],
           ),
           const SizedBox(
@@ -99,31 +109,25 @@ class CreateActivityStepTwoPage extends StatelessWidget {
             height: 10,
           ),
           Wrap(spacing: 10, runSpacing: 10, children: [
-            for (ActivityType item in (context
-                    .watch<CreateActivityStateCubit>()
-                    .state
-                    .categories))
+            for (ActivityType item
+                in (context.watch<CreateActivityStateCubit>().state.categories))
               ActivityChip(
                 activityId: item.id,
                 handleDelete: (data) => context
                     .read<CreateActivityStateCubit>()
                     .deleteCategory(item.id),
               ),
-            AddActivityCategories(
-              onCategorySelected: (categoryId) {
-                List<ActivityType> categories =
-                    context.read<CreateActivityStateCubit>().state.categories;
-                if (categories.any((el) => el.id == categoryId)) {
-                  context
-                      .read<CreateActivityStateCubit>()
-                      .deleteCategory(categoryId);
-                  return;
-                }
+            AddActivityCategories(onCategorySelected: (categoryId) {
+              List<ActivityType> categories =
+                  context.read<CreateActivityStateCubit>().state.categories;
+              if (categories.any((el) => el.id == categoryId)) {
                 context
                     .read<CreateActivityStateCubit>()
-                    .addCategory(categoryId);
+                    .deleteCategory(categoryId);
+                return;
               }
-            )
+              context.read<CreateActivityStateCubit>().addCategory(categoryId);
+            })
           ]),
           const SizedBox(
             height: 10,
@@ -157,17 +161,24 @@ class CreateActivityStepTwoPage extends StatelessWidget {
                               .decreaseMaxParticipantsCounter(),
                           child: Icon(
                             Icons.remove,
-                            color: Theme.of(context).colorScheme.onPrimaryContainer,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
                           ),
                         ),
                         Builder(
                           builder: (_) {
                             // Whenever the state changes, only the Text is rebuilt.
-                            final state = context.watch<CreateActivityStateCubit>().state.maxParticipants;
+                            final state = context
+                                .watch<CreateActivityStateCubit>()
+                                .state
+                                .maxParticipants;
                             return Text(
                               state.toString(),
                               style: TextStyle(
-                                color:  Theme.of(context).colorScheme.onPrimaryContainer,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onPrimaryContainer,
                               ),
                             );
                           },
@@ -178,7 +189,9 @@ class CreateActivityStepTwoPage extends StatelessWidget {
                               .increaseMaxParticipantsCounter(),
                           child: Icon(
                             Icons.add,
-                            color: Theme.of(context).colorScheme.onPrimaryContainer,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
                           ),
                         ),
                       ],

@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:lfg_mobile/modules/core/http/client.dart';
-import 'package:lfg_mobile/modules/core/repositories/user/models/user.dart';
+import 'package:bolha/modules/core/http/client.dart';
+import 'package:bolha/modules/core/repositories/user/models/user.dart';
 import 'package:dio/dio.dart';
 
 class UserApiProvider {
@@ -26,8 +26,7 @@ class UserApiProvider {
 
     final response = await client.post(
         data: formData,
-        customOptions: Options(contentType: "multipart/form-data")
-    );
+        customOptions: Options(contentType: "multipart/form-data"));
 
     if (response.statusCode == 200) {
       // If the call to the server was successful, parse the JSON

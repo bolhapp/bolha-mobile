@@ -1,7 +1,7 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lfg_mobile/modules/recover_account/components/recover_account_form.dart';
+import 'package:bolha/modules/recover_account/components/recover_account_form.dart';
 
 class RecoverAccountPage extends StatelessWidget {
   const RecoverAccountPage({super.key});
@@ -67,11 +67,11 @@ class RecoverAccountPage extends StatelessWidget {
                                         child: Text(
                                           AppLocalizations.of(context)!.signIn,
                                           style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary,
-                                             ),
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ),
                                         ))
                                   ],
                                 )))

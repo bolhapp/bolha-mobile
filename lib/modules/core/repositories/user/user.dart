@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:lfg_mobile/modules/core/repositories/user/models/user.dart';
-import 'package:lfg_mobile/modules/core/repositories/user/providers/user.dart';
+import 'package:bolha/modules/core/repositories/user/models/user.dart';
+import 'package:bolha/modules/core/repositories/user/providers/user.dart';
 
 class UserRepository {
   UserApiProvider provider = UserApiProvider();

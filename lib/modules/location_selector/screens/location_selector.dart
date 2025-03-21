@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
-import 'package:lfg_mobile/modules/core/external_services/google_maps_service.dart';
+import 'package:bolha/modules/core/external_services/google_maps_service.dart';
 
 class ILocationSelector {
   final String description;

@@ -1,6 +1,6 @@
-import 'package:lfg_mobile/modules/shared/components/skill_lvl_ball.dart';
+import 'package:bolha/modules/shared/components/skill_lvl_ball.dart';
 import 'package:flutter/material.dart';
-import 'package:lfg_mobile/modules/shared/utils/activities.dart';
+import 'package:bolha/modules/shared/utils/activities.dart';
 
 class ActivitySkillSelector extends StatelessWidget {
   const ActivitySkillSelector(
@@ -21,14 +21,13 @@ class ActivitySkillSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(getActivitySkillLvlTranslation(
-            activitySkillLvl.toString(), context),
+        Text(
+            getActivitySkillLvlTranslation(
+                activitySkillLvl.toString(), context),
             style: TextStyle(
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.bold,
-              fontSize: 16
-            )
-          ),
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.bold,
+                fontSize: 16)),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -40,11 +39,11 @@ class ActivitySkillSelector extends StatelessWidget {
               },
               color: Colors.red,
             ),
-            Text(getActivityTranslation(activityTag, context),  style: TextStyle(
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.bold,
-              fontSize: 16
-            )),
+            Text(getActivityTranslation(activityTag, context),
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16)),
             IconButton(
               padding: EdgeInsets.zero,
               style: ButtonStyle(
@@ -81,7 +80,7 @@ class ActivitySkillSelector extends StatelessWidget {
               onPressed: () {
                 handleSkillLvlIncrease(activityTag);
               },
-               padding: EdgeInsets.zero,
+              padding: EdgeInsets.zero,
               style: ButtonStyle(
                   alignment: Alignment.center,
                   minimumSize: const WidgetStatePropertyAll(Size(30, 30)),

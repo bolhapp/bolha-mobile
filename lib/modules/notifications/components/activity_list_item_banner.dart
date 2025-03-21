@@ -1,4 +1,4 @@
-import 'package:lfg_mobile/modules/core/repositories/activities/models/activities.dart';
+import 'package:bolha/modules/core/repositories/activities/models/activities.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 

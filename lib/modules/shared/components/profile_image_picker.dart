@@ -1,4 +1,4 @@
-import 'package:lfg_mobile/modules/shared/components/profile_image_slot.dart';
+import 'package:bolha/modules/shared/components/profile_image_slot.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/foundation.dart';
@@ -158,10 +158,9 @@ class ProfileImagePickerState extends State<ProfileImagePicker> {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       child: Icon(
-                        size: 20,
-                        color: Theme.of(context).colorScheme.onPrimary,
-                        Icons.camera_alt_outlined
-                      ),
+                          size: 20,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                          Icons.camera_alt_outlined),
                     ),
                   )
                 ],

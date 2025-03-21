@@ -1,5 +1,5 @@
-import 'package:lfg_mobile/modules/core/repositories/activities/models/activities.dart';
-import 'package:lfg_mobile/modules/core/repositories/activity_request/models/activity_request.dart';
+import 'package:bolha/modules/core/repositories/activities/models/activities.dart';
+import 'package:bolha/modules/core/repositories/activity_request/models/activity_request.dart';
 
 class NotificationModel {
   final String id;
@@ -10,14 +10,12 @@ class NotificationModel {
   final ActivityRequest? activityRequest;
 
   const NotificationModel(
-      {
-        required this.type,
+      {required this.type,
       required this.id,
       required this.createdAt,
       required this.user,
       required this.activity,
-      required this.activityRequest
-    });
+      required this.activityRequest});
 
   factory NotificationModel.fromJson(dynamic data) {
     return NotificationModel(

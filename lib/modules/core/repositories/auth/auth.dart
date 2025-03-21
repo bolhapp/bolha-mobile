@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:lfg_mobile/modules/core/repositories/auth/models/auth.dart';
-import 'package:lfg_mobile/modules/core/repositories/auth/providers/auth.dart';
+import 'package:bolha/modules/core/repositories/auth/models/auth.dart';
+import 'package:bolha/modules/core/repositories/auth/providers/auth.dart';
 
 class AuthRepository {
   AuthApiProvider provider = AuthApiProvider();

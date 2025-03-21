@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lfg_mobile/modules/signup/components/sign_up_step_page_form.dart';
+import 'package:bolha/modules/signup/components/sign_up_step_page_form.dart';
 
 class SignUpStepFormState {
   DateTime? dateOfBirth;
@@ -12,22 +12,24 @@ class SignUpStepFormState {
   SignUpStepFormState();
 }
 
-
 class SignUpStepFormCubit extends Cubit<SignUpStepFormState> {
-    SignUpStepFormCubit() : super(SignUpStepFormState());
+  SignUpStepFormCubit() : super(SignUpStepFormState());
 
   void updateName(String value) {
     state.name = value;
     emit(state);
   }
+
   void updateDateOfBirth(DateTime value) {
     state.dateOfBirth = value;
     emit(state);
   }
+
   void updateGender(String value) {
     state.genderDropdown = value;
     emit(state);
   }
+
   void updateProfilePicture(XFile file) {
     state.file = file;
     emit(state);
@@ -45,14 +47,14 @@ class SignUpStepPage extends StatelessWidget {
             child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Container(
-                    constraints: BoxConstraints(
-                      maxHeight: MediaQuery.of(context).size.height,
-                      maxWidth: MediaQuery.of(context).size.width,
-                    ),
-                    child:  BlocProvider(
-                      create: (_) => SignUpStepFormCubit(),
-                      child: const SignUpStepPageForm(),
-                    ), 
-    ))));
+                  constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height,
+                    maxWidth: MediaQuery.of(context).size.width,
+                  ),
+                  child: BlocProvider(
+                    create: (_) => SignUpStepFormCubit(),
+                    child: const SignUpStepPageForm(),
+                  ),
+                ))));
   }
 }

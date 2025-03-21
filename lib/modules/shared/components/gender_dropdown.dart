@@ -1,18 +1,17 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:lfg_mobile/modules/shared/components/common_decoration.dart';
+import 'package:bolha/modules/shared/components/common_decoration.dart';
 import 'package:flutter/material.dart';
 
 class GenderDropdown extends StatelessWidget {
-  const GenderDropdown({super.key, this.handleChanged });
+  const GenderDropdown({super.key, this.handleChanged});
 
   final void Function(String)? handleChanged;
-
 
   @override
   Widget build(BuildContext context) {
     return DropdownMenu(
         onSelected: (data) {
-          if(handleChanged != null) {
+          if (handleChanged != null) {
             handleChanged!(data!);
           }
         },

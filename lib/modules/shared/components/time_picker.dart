@@ -1,13 +1,9 @@
-import 'package:lfg_mobile/modules/shared/components/common_decoration.dart';
+import 'package:bolha/modules/shared/components/common_decoration.dart';
 import 'package:flutter/material.dart';
 
 class TimePicker extends StatefulWidget {
   const TimePicker(
-      {
-        super.key,
-        required this.handleChanged,
-        this.customInputDecoration
-    });
+      {super.key, required this.handleChanged, this.customInputDecoration});
 
   final InputDecoration? customInputDecoration;
   final void Function(String) handleChanged;
@@ -30,7 +26,7 @@ class _TimePickerState extends State<TimePicker> {
             initialTime: TimeOfDay.now(),
             initialEntryMode: TimePickerEntryMode.dialOnly,
           );
-          if(time != null) {
+          if (time != null) {
             setState(() {
               controller.text = time.format(context);
             });

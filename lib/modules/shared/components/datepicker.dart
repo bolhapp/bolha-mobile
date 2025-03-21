@@ -1,4 +1,4 @@
-import 'package:lfg_mobile/modules/shared/components/common_decoration.dart';
+import 'package:bolha/modules/shared/components/common_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -7,8 +7,7 @@ class DatePicker extends StatefulWidget {
       {super.key,
       this.restorationId,
       this.handleChanged,
-      this.customInputDecoration
-    });
+      this.customInputDecoration});
 
   final String? restorationId;
   final InputDecoration? customInputDecoration;

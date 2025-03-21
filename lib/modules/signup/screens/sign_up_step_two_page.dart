@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lfg_mobile/modules/signup/block/sign_up_step_two_page_state.dart';
-import 'package:lfg_mobile/modules/signup/components/sign_up_step_two_page_form.dart';
+import 'package:bolha/modules/signup/block/sign_up_step_two_page_state.dart';
+import 'package:bolha/modules/signup/components/sign_up_step_two_page_form.dart';
 
 class SignUpStepTwoPage extends StatelessWidget {
   const SignUpStepTwoPage({super.key});

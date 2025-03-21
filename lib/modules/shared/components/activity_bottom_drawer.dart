@@ -1,8 +1,8 @@
-import 'package:lfg_mobile/modules/activity_search/components/activity_card_day_widget.dart';
-import 'package:lfg_mobile/modules/shared/components/activity_container_chip.dart';
-import 'package:lfg_mobile/modules/shared/components/difficulty_container_chip.dart';
+import 'package:bolha/modules/activity_search/components/activity_card_day_widget.dart';
+import 'package:bolha/modules/shared/components/activity_container_chip.dart';
+import 'package:bolha/modules/shared/components/difficulty_container_chip.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:lfg_mobile/modules/core/repositories/activities/models/activities.dart';
+import 'package:bolha/modules/core/repositories/activities/models/activities.dart';
 import 'package:flutter/material.dart';
 
 class ActivityBottomDrawer extends StatelessWidget {

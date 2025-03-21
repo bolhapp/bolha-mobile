@@ -1,7 +1,7 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lfg_mobile/modules/signin/components/sign_in_form.dart';
+import 'package:bolha/modules/signin/components/sign_in_form.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
@@ -31,7 +31,12 @@ class SignInPage extends StatelessWidget {
                                         height: 150,
                                         image: AssetImage('assets/logo.png'),
                                       )),
-                                  const AspectRatio(aspectRatio: 16 / 1, child:  SizedBox(height: 10,),),
+                                  const AspectRatio(
+                                    aspectRatio: 16 / 1,
+                                    child: SizedBox(
+                                      height: 10,
+                                    ),
+                                  ),
                                   Padding(
                                       padding:
                                           const EdgeInsets.only(bottom: 2.0),
@@ -46,7 +51,12 @@ class SignInPage extends StatelessWidget {
                                                 .headlineLarge!
                                                 .fontSize),
                                       )),
-                                  const AspectRatio(aspectRatio: 16 / 1, child:  SizedBox(height: 10,),),
+                                  const AspectRatio(
+                                    aspectRatio: 16 / 1,
+                                    child: SizedBox(
+                                      height: 10,
+                                    ),
+                                  ),
                                   SignInForm(key: key),
                                   Padding(
                                       padding: const EdgeInsets.only(top: 10),
@@ -103,11 +113,11 @@ class SignInPage extends StatelessWidget {
                                         child: Text(
                                           AppLocalizations.of(context)!.signUp,
                                           style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .primary,
-                                             ),
+                                            fontWeight: FontWeight.bold,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ),
                                         ))
                                   ],
                                 )))

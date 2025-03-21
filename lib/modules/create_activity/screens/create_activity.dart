@@ -2,17 +2,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:lfg_mobile/modules/create_activity/block/activity_state_block.dart';
-import 'package:lfg_mobile/modules/create_activity/components/form_image_picker.dart';
-import 'package:lfg_mobile/modules/create_activity/components/form_input.dart';
-import 'package:lfg_mobile/modules/shared/components/image_picker_component.dart';
+import 'package:bolha/modules/create_activity/block/activity_state_block.dart';
+import 'package:bolha/modules/create_activity/components/form_image_picker.dart';
+import 'package:bolha/modules/create_activity/components/form_input.dart';
+import 'package:bolha/modules/shared/components/image_picker_component.dart';
 
 class CreateActivityPage extends StatelessWidget {
   const CreateActivityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         Expanded(
@@ -26,13 +25,14 @@ class CreateActivityPage extends StatelessWidget {
                 isMultiLine: false,
                 inputName: AppLocalizations.of(context)!.activityTitle,
                 inputHint: AppLocalizations.of(context)!.exActivityTitle,
-                
               ),
               const SizedBox(
                 height: 10,
               ),
               FormInput(
-                handleChanged: (data) => context.read<CreateActivityStateCubit>().setDescription(data),
+                handleChanged: (data) => context
+                    .read<CreateActivityStateCubit>()
+                    .setDescription(data),
                 isMultiLine: true,
                 inputName: AppLocalizations.of(context)!.description,
                 inputHint: AppLocalizations.of(context)!.exDescription,
@@ -54,31 +54,48 @@ class CreateActivityPage extends StatelessWidget {
                   height: 150,
                   child: ListView.separated(
                     itemBuilder: (_, idx) {
-                      if(idx >= context.read<CreateActivityStateCubit>().state.images.length) {
+                      if (idx >=
+                          context
+                              .read<CreateActivityStateCubit>()
+                              .state
+                              .images
+                              .length) {
                         return ImagemPickerComponent(
                           getImagePlaceholder: (img) => ImageInput(
                             image: img,
                           ),
                           handleImageSelected: (XFile data) => {
-                            context.read<CreateActivityStateCubit>().addImage(data)
+                            context
+                                .read<CreateActivityStateCubit>()
+                                .addImage(data)
                           },
                         );
                       }
                       return ImagemPickerComponent(
-                        image: context.watch<CreateActivityStateCubit>().state.images.elementAt(idx),
+                        image: context
+                            .watch<CreateActivityStateCubit>()
+                            .state
+                            .images
+                            .elementAt(idx),
                         getImagePlaceholder: (img) => ImageInput(
                           image: img,
                         ),
-                        handleImageSelected: (data) => context.read<CreateActivityStateCubit>().setImages(data),
+                        handleImageSelected: (data) => context
+                            .read<CreateActivityStateCubit>()
+                            .setImages(data),
                       );
                     },
-                    itemCount: context.watch<CreateActivityStateCubit>().state.images.length + 1,
+                    itemCount: context
+                            .watch<CreateActivityStateCubit>()
+                            .state
+                            .images
+                            .length +
+                        1,
                     scrollDirection: Axis.horizontal,
                     separatorBuilder: (_, idx) => const SizedBox(
-                        width: 10,
-                      ),
-                  )
-                ),
+                      width: 10,
+                    ),
+                  )),
             ])),
       ],
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lfg_mobile/modules/shared/utils/activities.dart';
+import 'package:bolha/modules/shared/utils/activities.dart';
 
 class DifficultyContainerChip extends StatelessWidget {
   const DifficultyContainerChip({super.key, required this.lvl});

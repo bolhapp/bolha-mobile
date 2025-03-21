@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:lfg_mobile/modules/core/http/client.dart';
+import 'package:bolha/modules/core/http/client.dart';
 import 'package:dio/dio.dart';
 
 class NotificationsApiProvider {

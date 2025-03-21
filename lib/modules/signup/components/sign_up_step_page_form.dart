@@ -1,14 +1,14 @@
-import 'package:lfg_mobile/modules/shared/components/datepicker.dart';
-import 'package:lfg_mobile/modules/shared/components/gender_dropdown.dart';
-import 'package:lfg_mobile/modules/shared/components/input_with_top_label.dart';
-import 'package:lfg_mobile/modules/shared/components/profile_image_picker.dart';
-import 'package:lfg_mobile/modules/core/repositories/user/models/user.dart';
-import 'package:lfg_mobile/modules/core/repositories/user/user.dart';
+import 'package:bolha/modules/shared/components/datepicker.dart';
+import 'package:bolha/modules/shared/components/gender_dropdown.dart';
+import 'package:bolha/modules/shared/components/input_with_top_label.dart';
+import 'package:bolha/modules/shared/components/profile_image_picker.dart';
+import 'package:bolha/modules/core/repositories/user/models/user.dart';
+import 'package:bolha/modules/core/repositories/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lfg_mobile/modules/signup/screens/sign_up_step_page.dart';
+import 'package:bolha/modules/signup/screens/sign_up_step_page.dart';
 
 class SignUpStepPageForm extends StatefulWidget {
   const SignUpStepPageForm({super.key});

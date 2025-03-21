@@ -1,5 +1,5 @@
-import 'package:lfg_mobile/modules/activity_search/components/activity_card_day_widget.dart';
-import 'package:lfg_mobile/modules/shared/components/activity_container_chip.dart';
+import 'package:bolha/modules/activity_search/components/activity_card_day_widget.dart';
+import 'package:bolha/modules/shared/components/activity_container_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -51,7 +51,8 @@ class ActivityCard extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.w800,
-                              color: Theme.of(context).colorScheme.primaryFixed))),
+                              color:
+                                  Theme.of(context).colorScheme.primaryFixed))),
                   ActivityCardDayWidget(
                     eventDate: date,
                     isOnline: false,
@@ -76,7 +77,7 @@ class ActivityCard extends StatelessWidget {
               const SizedBox(height: 8),
               Row(
                 children: [
-               /*    CircleAvatar(
+                  /*    CircleAvatar(
                     radius: 16,
                     backgroundImage: NetworkImage(hostNamePicture),
                   ), */
@@ -126,7 +127,8 @@ class ActivityCard extends StatelessWidget {
                     iconAlignment: IconAlignment.end,
                     icon: Icon(
                       Icons.arrow_right_alt,
-                      color: Theme.of(context).colorScheme.onPrimaryFixedVariant,
+                      color:
+                          Theme.of(context).colorScheme.onPrimaryFixedVariant,
                     ),
                     style: ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll(
@@ -138,7 +140,9 @@ class ActivityCard extends StatelessWidget {
                     label: Text(
                       AppLocalizations.of(context)!.viewActivity,
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimaryFixedVariant),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onPrimaryFixedVariant),
                     ),
                   ),
                 ],

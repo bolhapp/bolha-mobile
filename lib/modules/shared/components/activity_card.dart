@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lfg_mobile/modules/activity_search/components/activity_card_day_widget.dart';
-import 'package:lfg_mobile/modules/shared/utils/activities.dart';
+import 'package:bolha/modules/activity_search/components/activity_card_day_widget.dart';
+import 'package:bolha/modules/shared/utils/activities.dart';
 
 class ActivityCard extends StatelessWidget {
   final Function() handleOpenActivityDetail;
@@ -81,7 +81,7 @@ class ActivityCard extends StatelessWidget {
                 children: [
                   const CircleAvatar(
                     radius: 16,
-                    backgroundImage: AssetImage('assets/logo.png'), 
+                    backgroundImage: AssetImage('assets/logo.png'),
                   ),
                   const SizedBox(width: 8),
                   Text(hostName),
@@ -112,8 +112,8 @@ class ActivityCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 ActivityCardDayWidget(
-                    eventDate: date,
-                    isOnline: false,
+                  eventDate: date,
+                  isOnline: false,
                 ),
                 const SizedBox(height: 30),
                 ElevatedButton.icon(

@@ -1,7 +1,7 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lfg_mobile/modules/signup/components/sign_up_form.dart';
+import 'package:bolha/modules/signup/components/sign_up_form.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -31,7 +31,12 @@ class SignUpPage extends StatelessWidget {
                                         height: 150,
                                         image: AssetImage('assets/logo.png'),
                                       )),
-                                  const AspectRatio(aspectRatio: 16 / 1, child:  SizedBox(height: 10,),),
+                                  const AspectRatio(
+                                    aspectRatio: 16 / 1,
+                                    child: SizedBox(
+                                      height: 10,
+                                    ),
+                                  ),
                                   Padding(
                                       padding:
                                           const EdgeInsets.only(bottom: 2.0),
@@ -46,7 +51,12 @@ class SignUpPage extends StatelessWidget {
                                                 .headlineLarge!
                                                 .fontSize),
                                       )),
-                                  const AspectRatio(aspectRatio: 16 / 1, child:  SizedBox(height: 10,),),
+                                  const AspectRatio(
+                                    aspectRatio: 16 / 1,
+                                    child: SizedBox(
+                                      height: 10,
+                                    ),
+                                  ),
                                   SignUpForm(key: key),
                                   Padding(
                                       padding: const EdgeInsets.only(top: 10),

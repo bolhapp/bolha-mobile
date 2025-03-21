@@ -1,7 +1,7 @@
-import 'package:lfg_mobile/modules/core/access_token/access_token.dart';
-import 'package:lfg_mobile/modules/shared/components/common_decoration.dart';
-import 'package:lfg_mobile/modules/core/repositories/auth/auth.dart';
-import 'package:lfg_mobile/modules/core/repositories/auth/models/auth.dart';
+import 'package:bolha/modules/core/access_token/access_token.dart';
+import 'package:bolha/modules/shared/components/common_decoration.dart';
+import 'package:bolha/modules/core/repositories/auth/auth.dart';
+import 'package:bolha/modules/core/repositories/auth/models/auth.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

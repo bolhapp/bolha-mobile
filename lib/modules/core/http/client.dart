@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:lfg_mobile/modules/core/access_token/access_token.dart';
+import 'package:bolha/modules/core/access_token/access_token.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class HttpClient {

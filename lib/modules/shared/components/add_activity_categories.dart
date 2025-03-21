@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lfg_mobile/modules/create_activity/block/activity_state_block.dart';
-import 'package:lfg_mobile/modules/shared/components/activity_select_dialog.dart';
+import 'package:bolha/modules/create_activity/block/activity_state_block.dart';
+import 'package:bolha/modules/shared/components/activity_select_dialog.dart';
 
 class AddActivityCategories extends StatelessWidget {
-  const   AddActivityCategories(
-      {
-        super.key,
-        required this.onCategorySelected,
-    }
-  );
+  const AddActivityCategories({
+    super.key,
+    required this.onCategorySelected,
+  });
 
   final void Function(String) onCategorySelected;
 
@@ -18,12 +16,16 @@ class AddActivityCategories extends StatelessWidget {
     return await showDialog(
       context: context,
       builder: (BuildContext _) {
-        return  BlocProvider<CreateActivityStateCubit>.value(
-        value: BlocProvider.of<CreateActivityStateCubit>(context),
-        child:  ActivitySelectDialog(
-          checkIfSelected: (element) => context.read<CreateActivityStateCubit>().state.categories.any((type) => type.id == element),
-          handleListSelect: onCategorySelected,
-        ));
+        return BlocProvider<CreateActivityStateCubit>.value(
+            value: BlocProvider.of<CreateActivityStateCubit>(context),
+            child: ActivitySelectDialog(
+              checkIfSelected: (element) => context
+                  .read<CreateActivityStateCubit>()
+                  .state
+                  .categories
+                  .any((type) => type.id == element),
+              handleListSelect: onCategorySelected,
+            ));
       },
     );
   }
@@ -46,12 +48,12 @@ class AddActivityCategories extends StatelessWidget {
         size: 20,
       ),
       style: ButtonStyle(
-        minimumSize: const WidgetStatePropertyAll(Size(90,40)),
-        maximumSize: const WidgetStatePropertyAll(Size(90,40)),
+        minimumSize: const WidgetStatePropertyAll(Size(90, 40)),
+        maximumSize: const WidgetStatePropertyAll(Size(90, 40)),
         fixedSize: const WidgetStatePropertyAll(Size(90, 40)),
         alignment: Alignment.centerRight,
-        backgroundColor:
-            WidgetStatePropertyAll(Theme.of(context).colorScheme.primaryContainer),
+        backgroundColor: WidgetStatePropertyAll(
+            Theme.of(context).colorScheme.primaryContainer),
       ),
       onPressed: () {
         openActivityDialog(context);

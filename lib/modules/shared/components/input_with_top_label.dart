@@ -1,14 +1,17 @@
-import 'package:lfg_mobile/modules/shared/components/common_decoration.dart';
+import 'package:bolha/modules/shared/components/common_decoration.dart';
 import 'package:flutter/material.dart';
 
 class InputWithTopLabel extends StatelessWidget {
   const InputWithTopLabel(
-      {super.key,  required this.inputName,this.hintTextStr, this.handleChanged});
+      {super.key,
+      required this.inputName,
+      this.hintTextStr,
+      this.handleChanged});
 
   final String inputName;
   final String? hintTextStr;
   final void Function(String)? handleChanged;
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,13 +29,12 @@ class InputWithTopLabel extends StatelessWidget {
         ),
         TextFormField(
           onChanged: (data) {
-            if(handleChanged != null) {
+            if (handleChanged != null) {
               handleChanged!(data);
             }
           },
           decoration: TextInputCommonDecoration.textFieldStyle(
-            hintTextStr: hintTextStr ?? ''
-          ),
+              hintTextStr: hintTextStr ?? ''),
         )
       ],
     );

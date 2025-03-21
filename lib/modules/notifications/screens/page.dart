@@ -1,10 +1,10 @@
-import 'package:lfg_mobile/modules/core/repositories/activities/models/activities.dart';
-import 'package:lfg_mobile/modules/core/repositories/notifications/models/notifications.dart';
-import 'package:lfg_mobile/modules/core/repositories/notifications/notifications.dart';
+import 'package:bolha/modules/core/repositories/activities/models/activities.dart';
+import 'package:bolha/modules/core/repositories/notifications/models/notifications.dart';
+import 'package:bolha/modules/core/repositories/notifications/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:lfg_mobile/modules/notifications/components/activity_list_item_banner.dart';
-import 'package:lfg_mobile/modules/notifications/components/user_request_activity_item.dart';
+import 'package:bolha/modules/notifications/components/activity_list_item_banner.dart';
+import 'package:bolha/modules/notifications/components/user_request_activity_item.dart';
 
 class AggregatedNotificationModel {
   final Activity? activity;
